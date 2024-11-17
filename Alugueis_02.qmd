@@ -1,0 +1,713 @@
+---
+title: "Availação de Alugueis"
+subtitle: "Parte 02"
+author: "Luiz Fernando Palin Droubi"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+bibliography: referencias.bib
+format: 
+  metropolis-revealjs:
+#    smaller: true
+    keep-md: true
+    incremental: true  
+prefer-html: true
+---
+
+## Aproveitamento do Terreno {.smaller}
+
+-   Uma questão que aparece em decorrência da aplicação do método evolutivo
+
+-   Não é incomum que um imóvel seja alugado enquanto ocupando um terreno de forma "improdutiva"
+
+    -   Exemplos:
+        -   Um terreno de grandes dimensões (em planta), porém ocupado apenas em parte
+        -   Um terreno edificado com um prédio comercial de 3 andares, situado em zona urbana com possibilidade de construção de até 5 andares
+
+-   Como o terreno encontra-se subaproveitado, não se pode aplicar uma taxa de remuneração sobre todo o terreno para calcular o aluguel justo ao locatário
+
+    -   Se o terreno é subaproveitado, quem deve arcar com a perda de renda decorrente deste subaproveitamento é o proprietário do terreno.
+
+-   Cuidado:
+
+    -   O aproveitamento máximo do terreno está **eventualmente** ligado ao **aproveitamento máximo legal**, *i.e.* ao que se permite construir no terreno segundo o zoneamento municipal.
+    -   O aproveitamento máximo do terreno, porém, **também** está ligado ao **aproveitamento máximo econômico** do terreno.
+
+-   Por exemplo: regiões pouco desenvolvidas, onde, até pelo baixo preço dos terrenos, não se justifica economicamente a construção de prédios de vários pavimentos, apesar de ser permitida pela legislação.
+
+## Aproveitamento do Terreno {.smaller}
+
+-   O coeficiente de aproveitamento do terreno é o coeficiente que relaciona as benfeitorias realmente existentes no terreno às benfeitorias que, caso erigidas no terreno, dariam-lhe o **máximo e melhor aproveitamento**.
+
+-   O coeficiente de aproveitamento trata, portanto, não apenas da quantidade de **área construída** no terreno, mas à **qualidade** desta área construída e a sua **idade** (conservação).
+
+. . .
+
+> Em regiões onde os terrenos são extremamente valiosos, para que a construção lhes dê um bom aproveitamento, não basta que seja grande. É necessário que seja de padrão condizente com o mercado local, pois, ao se propor a pagar uma quantia extremamente alta por um terreno, o investidor o faz pensando em nele implantar uma construção de alto padrão, ou seja, economicamente adequada ao valor do terreno. Exemplo flagrante dessa situação é o caso da Avenida Paulista, em São Paulo, onde os preços de terrenos chegam à casa dos 10 mil dólares o metro quadrado e onde a ocupação é de prédios novos e de altíssimo padrão (Candeloro, n.d., 45).
+
+## Cálculo do Coeficiente de Aproveitamento
+
+-   O coeficiente de aproveitamento pode ser descrito pela fórmula a seguir (Candeloro, n.d., 19; D’Amato e Alonso 2019, p, 129):
+    -   $$C_A = \frac{A_{h-existente}}{A_{h-máxima}}$$
+-   Deve-se notar que o Coeficiente de Aproveitamento é calculado com áreas homogeneizadas, *i.e.* com áreas ponderadas conforme a escolha de pesos convenientes.
+    -   Ponderar a área edificada segundo o aproveitamento do terreno (zoneamento)
+    -   Ponderar a área edificada segundo a qualidade da área construída (CUB)
+    -   Ponderar a área edificada segundo o grau de obsolescência da edificação
+
+## Cálculo do Coeficiente de Aproveitamento {.smaller}
+
+- Exemplo:
+  - Um terreno com 10,0m de testada e área $S = 400m^2$, situado em zona urbana 
+  com Taxa de Ocupação (TO) igual a 0,5 e Coeficiente de Aproveitamento (CA) 
+  igual a 1,0. Este terreno encontra-se em zona com valor do metro quadrado 
+  $q_T = 2.000,00 /m^2$
+  - Neste terreno encontra-se edificada uma edificação comercial com 450m2 de 
+  área construída, sendo 150m2 no térreo e 300m2 nos andares superiores
+  - A edificação possui padrão construtivo médio e tem idade de aproximadamente 
+  10 anos, o que resulta num fator de obsolescência igual a 0,75.
+  - Considerar que o custo de construção equivale a 1,2 vezes o CUB do padrão
+  R-8N ($\text{R\$ }1.000,00/m^2$), *i.e.* $q_B = 1,2.\text{R-8N}$.
+  - Considerar que as áreas do térreo (lojas) tem peso 3 em relação às áreas superiores
+    - Calcular o Coeficiente de Aproveitamento do Terreno
+    - Após, calcular o valor do aluguel justo do terreno, considerando $i = 8\%$,
+    tanto para as benfeitorias, tanto para o terreno.
+
+## Resolução {.smaller}
+
+### Cálculo do Coeficiente de Aproveitamento
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Área homogeneizada existente
+  - Térreo (peso 3):
+    - $A_{T-exist} = W_T.A_T = 3.150$
+    - $A_{T-exist} = 450m^2$
+  - Superiores (peso 1):
+    - $A_{S-exist} = W_S.A_S = 1.300$
+    - $A_{S-exist} = 300m^2$
+:::
+
+::: {.column width="50%"}
+- Área homogeneizada máxima
+  - Térreo (peso 3):
+    - $A_{T-max} = TO.S.W_T = 0,5.400.3 = 600m^2$
+  - Superiores (peso 1):
+    - $A_{S-max} = (CA-TO).S.W_S = (1-0,5).400.1$
+    - $A_{S-max} = 200m^2$
+:::
+
+::::
+
+- Coeficiente de Aproveitamento:
+  - $CA = \frac{A_{h-existente}}{A_{h-máxima}}=\frac{750}{800}=0,9375$
+
+## Resolução {.smaller}
+
+### Cálculo do valor do capital
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Capital Terreno: 
+  - $q_T = \text{R\$ }2.000,00/m^2$
+  - $V_T = q_T.S = 2.000.400 = 800.000$
+:::
+
+
+::: {.column width="50%"}
+- Capital Benfeitoria:
+  - $q_B = \text{R\$ }1.200,00/m^2$
+  - $f_o = 0,75$
+  - $V_B = f_o.q_B.A_B = 0,75.1.200.450 = 405.000$
+:::
+
+::::
+
+
+### Método da Remuneração do Capital
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Capital Terreno: 
+  - $C_T = V_T.\text{CA} = 800.000.0,9375$
+  - $C_T =\text{R\$ }750.000,00$
+:::
+
+
+::: {.column width="50%"}
+- Capital Benfeitoria:
+  - $C_B = V_B = \text{R\$ }405.000$
+:::
+::::
+
+- $$Al = \frac{(CT + CB).i}{12}={(750.000+405.000).8\%}{12}=\text{R\$}7.700,00/mês$$
+
+- Melhor: $Al = 1.155.000∗[(1+8\%)^{1/12}−1]=\text{R\$}7.431,30/mês$
+
+## Coeficiente de Aproveitamento
+
+### Redução do Coeficiente pela idade
+
+- Com o aumento da idade da edificação, as benfeitorias podem passar a não 
+refletir mais o aproveitamento máximo do terreno;
+
+- É controverso se a idade deveria influenciar no cálculo do aproveitamento para
+fins de locação (para fins de venda, é unânime que sim)
+- Cuidado: os textos encontrados não mencionam, porém o avaliador deve observar 
+o entorno do avaliando
+  - Se no entorno, os elementos amostrais coletados possuem idade aparente 
+  similar ao do avaliando, não há qualquer razão que indique o subaproveitamento 
+  do terreno
+  - Se, no entanto, o avaliando encontra-se em meio a diversos edifícios mais 
+  novos, é indicativo que deve ser aplicada a redução do Coeficiente pela idade
+  
+## Coeficiente de Aproveitamento {.smaller}
+
+### Redução do Coeficiente pela idade
+
+-  Fórmula de Dante Guerrero [@candeloro, p. 20]:
+  - $CA_R = CA\left [R + (1-R).\frac{v}{V}\right ]$
+  - $R$: residual da construção
+  - $v$: idade aparente da benfeitoria
+  - $V$: vida útil da benfeitoria
+  
+- Exemplo:
+  - Mesmo caso anterior, em que $CA = 750/800 = 0,9375$, considerar vida útil 
+  igual a 50 anos e Residual igual a 20%:
+    - $CA_R = CA\left [R + (1-R).\frac{v}{V}\right ]$
+    - $CA = \frac{750}{800}\left [20\% + (1-20\%).\frac{10}{50}\right ] = 0,9375.(0,2+(1-0,2).10/50)$
+    - $CA = 0,3375$
+    - Está incorreto!
+    - Correto seria: $CA_R = CA\left [R + (1-R).\left (1-\frac{v}{V}\right )\right ] = \frac{750}{800}\left [20\% + (1-20\%).\left(1-\frac{10}{50}\right)\right ]$
+    $CA = 0,9375.(0,2+0,64) = 0,7875$
+  
+## Coeficiente de Aproveitamento {.smaller}
+
+### Redução do Coeficiente pela idade
+
+-  Cuidado com a aplicação de fórmulas prontas!
+
+- Exemplo [@alonso2017, p. 4-5]:
+  - Suponhamos então que determinado terreno avaliando, com 2.304,00m2,
+  situado em região onde a lei de uso e ocupação do solo fixa o coeficiente de
+  aproveitamento 2 e taxa de ocupação 0,50, e que esteja ocupado por uma
+  construção térrea com 22 anos de idade, vida útil de 60 anos e 700,00m2 de 
+  área construída total; as áreas ponderadas "existente" e "possível" são assim
+  calculadas:
+    - $A_{h-existente} = 700\times3,0 = 2.100,00m^2$
+    - $A_{h-possível} = 2.304\times0,5\times3,0 +  2.304\times0,5\times2,0 + 2\times2.304\times0,5\times1,0= 8.064,00m^2$
+    - O que seria o $CA_{básico}$?
+    - $CA_{básico} = \frac{2.100}{8.064}=0,26$
+    - Aplicou-se $C_{Ap} = 1 – [((E – e)/E).(0,20 + (0,80.(V – v)/V))]$
+    - E chegou-se a: $C_{Ap} =  = 1 – [((8.064 – 2.100)/8.064) (0,20 + (0,80.(60-22)/60))] = 1 – (0,7396 . 0,7067) = 0,477$
+    - O coeficiente de aproveitamento aumentou após a consideração da idade!!!
+    - Pode-se perceber que o erro está no componente básico da fórmula!
+    - Correto seria: $C_{Ap} = 1 – [ (e/E) . ( 0,20 + ( 0,80 . (V – v)/V))] = 1 – (0,26 . 0,7067) = 0,184$
+    
+## Coeficiente de Aproveitamento {.smaller}
+
+### Redução do Coeficiente pela idade e padrão  
+
+> De fato, como explicar a ocorrência de demolição de imóveis antes de
+atingirem sua vida útil? Geralmente isto acontece quando ocorre alteração
+ponderável do padrão em determinada região tornando as construções ali
+existentes obsoletas funcionalmente [@alonso2017, p. 5].
+
+> Então, aos dois fatores endógenos (área e idade) deve ser acrescentado
+o padrão regional, de natureza exógena, portanto de caráter somatório 
+[@alonso2017, p. 6].
+
+- $$C_{Ap} = 1 – (1 - \frac{e}{E}).(0,20 + (0,80.(1 - v/V))) + (1 - p/P)$$
+
+- Exemplo [@alonso2017, p. 6-8]:
+  - Mesmos dados do anterior
+  - Porém, agora considerando que o padrão da construção existente é de 
+  1,470xR-8N, enquanto no entorno prevalece um padrão mais alto, de 1,926xR-8N
+  
+## Coeficiente de Aproveitamento {.smaller}
+
+### Redução do Coeficiente pela idade e padrão  
+
+- Solução [@alonso2017, p. 8]:
+  - $C_{Ap} = 0,714$
+  - Não faz o menor sentido!
+  
+- Solução lógica:
+  - $C_{Ap} = 1 – [ (e/E) . (0,20 + (0,80.(V – v)/V)).(p/P)] = 1 – (0,26.0,7067.0.763) = 0,184$
+
+- Não faz sentido, ao meu ver, que a variável padrão seja considerada na forma
+aditiva, enquanto as outras são consideradas na forma multiplicativa.
+
+# Método Comparativo
+
+## O Método Comparativo {.smaller}
+
+-   O Método Comparativo Direto de Dados de Mercado (MCDDM) tenta contornar a 
+necessidade de estabelecimento de uma taxa de remuneração do capital, através da
+pesquisa direta de dados de mercado de aluguéis de imóveis com diferentes 
+características
+
+. . . 
+
+```{r}
+# Comparacao do tratamento por fatores e tratamento por regressao linear
+
+# Carregamento dos pacotes necessarios
+library(tibble)
+library(effects)
+library(broom)
+library(appraiseR)
+library(knitr)
+
+# Insercao manual dos dados
+# Dados de Alonso, Foz do Iguacu (2019, p. 48)
+
+df <- tribble(
+  ~id, ~Area,  ~Aluguel, ~Condo, ~Padrao, ~PadraoProxy, ~Idade,
+    1,    90,      2755,    285,  "Alto",        2.160,     25,
+    2,    87,      2310,    285, "Médio",        1.926,     25,
+    3,    90,      2215,    230,  "Alto",        2.160,     30,
+    4,    95,      1830,    230, "Baixo",        1.692,     30,
+    5,    90,      2000,    230,  "Alto",        2.160,     30,
+    6,   105,      1830,    290, "Médio",        1.926,     25,
+    7,   100,      1640,    250, "Baixo",        1.692,     30,
+    8, 93.69,        NA,    250,  "Alto",        1.926,     25,
+)
+kable(df)
+```
+
+## O Método Comparativo {.smaller}
+
+## Análise Exploratória
+
+```{r}
+# Computo do Valor Unitario dos Alugueis
+
+df <- within(df, {
+  PU <- Aluguel/Area
+  PU2 <- (Aluguel + Condo)/Area
+  Deprec <- (1-2.5/100)^Idade
+  PadraoDeprec <- PadraoProxy*Deprec
+})
+```
+
+```{r}
+plotdf(PU ~ Area + Padrao, data = df, labels = T)
+```
+
+## O Método Comparativo {.smaller}
+
+## Análise Exploratória
+
+```{r}
+plotdf(PU ~ Area + PadraoDeprec, data = df, labels = T)
+```
+
+## O Método Comparativo {.smaller}
+
+## Análise Exploratória
+
+```{r}
+plotdf(log(PU) ~ log(Area) + log(PadraoDeprec), data = df, labels = T)
+```
+
+## O Método Comparativo {.smaller}
+
+## Análise de regressão
+
+```{r}
+# 1.2 Metodo Comparativo, tratamento por regressao linear
+
+# Ajuste do modelo
+
+fit <- lm(log(PU) ~ log(Area) + log(PadraoDeprec), data = df)
+fit |>
+  tidy() |>
+  kable()
+```
+
+## O Método Comparativo {.smaller}
+
+## Análise de regressão
+
+```{r}
+# Analise dos residuos
+# plot(fit)
+
+# Graficos do Modelo
+#
+plot(predictorEffects(fit, residuals = T), id = T,
+     axes=list(grid=TRUE, x=list(rotate=45)),
+     partial.residuals=list(smooth=TRUE, span=1.25, lty = "dashed"))
+```
+
+## O Método Comparativo {.smaller}
+
+## Previsão de Valores
+
+```{r}
+# Computo do valor do aluguel atraves do modelo
+
+p <- predict(fit, newdata = list(Area = 93.69, PadraoDeprec = 1.926*(1-2.5/100)^25),
+             interval = "confidence", level = .80)
+exp(p) # 22,97 [21,74; 24,27]
+
+# Obs.: Praticamente o mesmo valor obtido no tratamento por fatores.
+```
+
+## O Método Comparativo {.smaller}
+
+## Alternativa (não-recomendado!)
+
+```{r}
+df <- within(df, PVendaProxy <- Area*PadraoProxy*Deprec)
+library(ggpmisc)
+ggplot(df, aes(x = PVendaProxy, y = PU)) +
+  geom_point() +
+  stat_poly_line(formula = y ~ x - 1) +
+  stat_poly_eq(use_label(c("eq", "R2")), size = 6, formula = y ~ x - 1) +
+  geom_segment(x = 93.69*1.926*(1-2.5/100)^25, xend = 93.69*1.926*(1-2.5/100)^25,
+               y=0, yend = 23.57, color = "red", size=1.5) +
+  geom_segment(x = 0, xend = 93.69*1.926*(1-2.5/100)^25, y = 23.57, yend = 23.57, 
+               color = "red", size=1.5) +
+  theme_grey(base_size = 20)
+```
+
+
+## O Método Comparativo {.smaller}
+
+## Alternativa
+
+```{r}
+#| echo: true
+.246*93.69*1.926*(1-2.5/100)^25
+```
+
+# Atualização de Aluguéis
+
+## Atualização de Aluguéis
+
+- A existência de poucos dados de mercado contemporâneos exige que seja feita a
+comparação de dados de aluguéis contratados em perídos anteriores
+
+- Exemplo: calcular o aluguel vigente em maio/2008 [@damato, 755]
+
+. . . 
+
+```{r}
+df <- tribble(
+  ~Id,       ~Inicio, ~Prazo, ~Aluguel, ~Reajuste, ~Indice,
+    1,  "01/03/2014",   5*12,     1400,   "Anual", "IGP-M",
+    2,  "12/06/2015",   5*12,     1350,   "Anual", "IGP-M",
+    3,  "17/08/2015",   4*12,     1200,   "Anual", "IGP-M",
+    4,  "12/09/2015",   4*12,     1164,   "Anual", "IGP-M"
+)
+kable(df)
+```
+
+
+## Atualização de Aluguéis
+
+## Atualização de Aluguéis {.smaller}
+
+- Por que sou contrário?
+  - Equilíbrio dos mercados imobiliário e de ativos
+  - Quando o primeiro contrato foi firmado, em março de 2014, a atividade 
+econômica ainda estava acelerada (desemprego baixo, renda alta)
+  - Em 2015, a Atividade Econômica já havia caído bruscamente, o que afeta o
+  mercado de aluguéis.
+
+. . . 
+
+```{r}
+#| out-width: "75%"
+knitr::include_graphics("PIB.png")
+```
+
+# Equilíbrio dos Mercados
+
+## Choque de demanda
+
+```{r}
+#| label: choqueDemanda
+#| fig-cap: "Efeito de um choque de demanda (atividade econômica). Fonte: @diPasquale [apud @ADAMS2010]"
+demand_property <- Hmisc::bezier(c(1, 1.5, 7), c(7, 3, 1)) %>%
+  as_tibble()
+
+demand_property_1 <- Hmisc::bezier(c(3, 3.5, 9), c(9, 3.5, 3)) %>%
+  as_tibble()
+
+
+plot_labels <- tibble(label = expression("D[1]", "D[2]"),
+                      x = c(1, 3.5),
+                      y = c(7.5, 9.5))
+axis_labels <- tibble(label = expression("Aluguéis", "Estoque", 
+                                         "Preço dos \n Imóveis", "Construção"),
+                      x = c(-1.5, 9, -8.5, 2),
+                      y = c(10, .5, 0, -10))
+
+Mercados <- tibble(
+  label = expression("Mercado de Bens: \n Determinação dos \nPreços",
+                     "Mercado de Bens: \n Determinação da \nConstrução",
+                     "Mercado Imobiliário: \n Determinação dos \nAluguéis",
+                     "Mercado Imobiliário: \n Determinação do \nEstoque Residencial"), 
+  x = c(-7.5, -7.5, 7.5, 7.5), y = c(8, -8, 8, -8)) 
+Romans <- tibble(label = c("I", "II", "III", "IV"), 
+                 x = c(8, -8, -8, 8),
+                 y = c(4.5, 4.5, -4.5, -4.5))
+
+p1 <- ggplot(mapping = aes(x = x, y = y)) + 
+  # geom_path(data = supply, color = "#0073D9", size = 1) + 
+  geom_path(data = demand_property, color = "#FF4036", size = 1) +
+  geom_path(data = demand_property_1, color = "#FF4036", size = 1) +
+  annotate("segment", x = 1.25, xend = 3, y = 6, yend = 7.75, 
+           arrow = arrow(length = unit(.5, "lines")), 
+           size = 1, colour = "grey50") + 
+  geom_hline(aes(yintercept = 0)) + 
+  # geom_abline(slope = -1, size = 1) +
+  geom_segment(aes(x = -7, y = 7, xend = 7, yend = -7), size = 1) +
+  geom_vline(aes(xintercept = 0)) +
+  geom_segment(aes(x = -7.5, y = -7.0, xend = -.75, yend = 0), size = 1) +
+  geom_segment(aes(x = 3, y = 3.25, xend = -3.5, yend = 3.25), lty = "dotted") +
+  geom_segment(aes(x = -3.5, y = 3.25, xend = -3.5, yend = -3), lty = "dotted") +
+  geom_segment(aes(x = -3.5, y = -3, xend = 3, yend = -3), lty = "dotted") +
+  geom_segment(aes(x = 3, y = -3, xend = 3, yend = 3.25), lty = "dotted") +
+  geom_segment(aes(x = 4.5, y = 5, xend = -5.25, yend = 5), lty = "dashed") +
+  geom_segment(aes(x = -5.25, y = 5, xend = -5.25, yend = -4.5), lty = "dashed") +
+  geom_segment(aes(x = -5.25, y = -4.5, xend = 4.5, yend = -4.5), lty = "dashed") +
+  geom_segment(aes(x = 4.5, y = -4.5, xend = 4.5, yend = 5), lty = "dashed") +
+  geom_text(data = plot_labels, aes(x = x, y = y, label = label), 
+            parse = TRUE)  +
+  geom_text(data = axis_labels, aes(x = x, y = y, label = label),
+            size = 4.5)  +
+  geom_text(data = Mercados, aes(x = x, y = y, label = label), 
+            size = 3.5) +
+  geom_text(data = Romans, aes(x = x, y = y, label = label), 
+            size = 4, fontface = "bold") +
+  coord_equal() +
+  labs(x = NULL, y = NULL, 
+       title = "Choque de Demanda",
+       caption = "Elaborado pelo Eng.º Luiz F. P. Droubi. Adaptado de DiPasquale e Wheaton (1996 apud Adams e Füss 2010)") +
+  theme_classic() +
+  theme(axis.line=element_blank(), 
+        axis.title.y = element_text(angle = 0, hjust = .9)) +
+  scale_x_continuous(expand = c(.025, .025), breaks = NULL, limits = c(-10, 10)) +
+  scale_y_continuous(expand = c(.025, .025), breaks = NULL, limits = c(-10, 10))
+p1
+```
+
+## Efeito de um aumento da taxa de juros de longo prazo
+
+```{r}
+#| label: choqueJuros
+#| fig-cap: "Efeito de um aumento de juros de longo prazo. Fonte: @diPasquale [apud @ADAMS2010]"
+demand_property <- Hmisc::bezier(c(2, 3.5, 10), c(10, 3.5, 1)) %>%
+  as_tibble()
+
+plot_label <- tibble(label = "D", x = 2.75, y = 9.5)
+
+p2 <- ggplot(mapping = aes(x = x, y = y)) + 
+  # geom_path(data = supply, color = "#0073D9", size = 1) + 
+  # geom_path(data = demand_property, color = "#FF4036", size = 1) +
+  geom_path(data = demand_property, color = "#FF4036", size = 1) +
+  annotate("segment", x = -7.5, xend = -6, y = 4, yend = 6, 
+           arrow = arrow(length = unit(.5, "lines")), 
+           size = 1, colour = "grey50") + 
+  geom_hline(aes(yintercept = 0)) + 
+  # geom_abline(slope = -1, size = 1) +
+  geom_segment(aes(x = -6, y = 6, xend = 0, yend = 0), size = 1, lty = "dotted") +
+  geom_segment(aes(x = -7.5, y = 4, xend = 0, yend = 0), size = 1) +
+  geom_segment(aes(x = 0, y = 0, xend = 7, yend = -7), size = 1) +
+  geom_vline(aes(xintercept = 0)) +
+  geom_segment(aes(x = -7.5, y = -7.0, xend = -.75, yend = 0), size = 1) +
+  geom_segment(aes(x = 5.75, y = 3.25, xend = -6, yend = 3.25), lty = "dotted") +
+  geom_segment(aes(x = -6, y = 3.25, xend = -6, yend = -5.5), lty = "dotted") +
+  geom_segment(aes(x = -6, y = -5.5, xend = 5.75, yend = -5.5), lty = "dotted") +
+  geom_segment(aes(x = 5.75, y = -5.5, xend = 5.75, yend = 3.25), lty = "dotted") +
+  geom_segment(aes(x = 4.5, y = 5, xend = -5.25, yend = 5), lty = "dashed") +
+  geom_segment(aes(x = -5.25, y = 5, xend = -5.25, yend = -4.5), lty = "dashed") +
+  geom_segment(aes(x = -5.25, y = -4.5, xend = 4.5, yend = -4.5), lty = "dashed") +
+  geom_segment(aes(x = 4.5, y = -4.5, xend = 4.5, yend = 5), lty = "dashed") +
+  geom_text(data = plot_label, aes(x = x, y = y, label = label), 
+            parse = TRUE)  +
+  geom_text(data = axis_labels, aes(x = x, y = y, label = label),
+            size = 4.5)  +
+  geom_text(data = Mercados, aes(x = x, y = y, label = label), 
+            size = 3.5) +
+  geom_text(data = Romans, aes(x = x, y = y, label = label), 
+            size = 4, fontface = "bold") +
+  coord_equal() +
+  labs(x = NULL, y = NULL, 
+       title = "Choque de Juros",
+       caption = "Elaborado pelo Eng.º Luiz F. P. Droubi. Adaptado de DiPasquale e Wheaton (1996 apud Adams e Füss 2010)") +
+  theme_classic() +
+  theme(axis.line=element_blank(), 
+        axis.title.y = element_text(angle = 0, hjust = .9)) +
+  scale_x_continuous(expand = c(.025, .025), breaks = NULL, limits = c(-10, 10)) +
+  scale_y_continuous(expand = c(.025, .025), breaks = NULL, limits = c(-10, 10))
+p2
+```
+
+## Efeito do aumento de custos de construção
+
+```{r}
+#| label: choqueCustos
+#| fig-cap:  "Efeito de um aumento de custos de construção. Fonte: @diPasquale [apud @ADAMS2010]"
+demand_property <- Hmisc::bezier(c(1, 3.75, 13.5), c(8, 3.75, 1.5)) %>%
+  as_tibble()
+
+plot_label <- tibble(label = "D", x = 2.75, y = 9.5)
+
+p3 <- ggplot(mapping = aes(x = x, y = y)) + 
+  # geom_path(data = supply, color = "#0073D9", size = 1) + 
+  # geom_path(data = demand_property, color = "#FF4036", size = 1) +
+  geom_path(data = demand_property, color = "#FF4036", size = 1) +
+  annotate("segment", x = -6, xend = -8, y = -5.5, yend = -5.5, 
+           arrow = arrow(length = unit(.5, "lines")), 
+           size = 1, colour = "grey50") + 
+  geom_hline(aes(yintercept = 0)) + 
+  # geom_abline(slope = -1, size = 1) +
+  geom_segment(aes(x = -7, y = 7, xend = 0, yend = 0), size = 1) +
+  geom_segment(aes(x = 0, y = 0, xend = 7, yend = -7), size = 1) +
+  geom_vline(aes(xintercept = 0)) +
+  geom_segment(aes(x = -7.5, y = -7.0, xend = -.75, yend = 0), size = 1) +
+  geom_segment(aes(x = -9.5, y = -7.0, xend = -2.75, yend = 0), size = 1, lty = "dashed") +
+  geom_segment(aes(x = 4.5, y = 5, xend = -5.25, yend = 5), lty = "dotted") +
+  geom_segment(aes(x = -5.25, y = 5, xend = -5.25, yend = -4.5), lty = "dotted") +
+  geom_segment(aes(x = -5.25, y = -4.5, xend = 4.5, yend = -4.5), lty = "dotted") +
+  geom_segment(aes(x = 4.5, y = -4.5, xend = 4.5, yend = 5), lty = "dotted") +
+  geom_segment(aes(x = 3, y = 5.75, xend = -5.75, yend = 5.75), lty = "dashed") +
+  geom_segment(aes(x = -5.75, y = 5.75, xend = -5.75, yend = -3), lty = "dashed") +
+  geom_segment(aes(x = -5.75, y = -3, xend = 3, yend = -3), lty = "dashed") +
+  geom_segment(aes(x = 3, y = -3, xend = 3, yend = 5.75), lty = "dashed") +
+  geom_text(data = plot_label, aes(x = x, y = y, label = label), 
+            parse = TRUE)  +
+  geom_text(data = axis_labels, aes(x = x, y = y, label = label),
+            size = 4.5)  +
+  geom_text(data = Mercados, aes(x = x, y = y, label = label), 
+            size = 3.5) +
+  geom_text(data = Romans, aes(x = x, y = y, label = label), 
+            size = 4, fontface = "bold") +
+  coord_equal() +
+  labs(x = NULL, y = NULL, 
+       title = "Choque de Custos",
+       caption = "Elaborado pelo Eng.º Luiz F. P. Droubi. Adaptado de DiPasquale e Wheaton (1996 apud Adams e Füss 2010)") +
+  theme_classic() +
+  theme(axis.line=element_blank(), 
+        axis.title.y = element_text(angle = 0, hjust = .9)) +
+  scale_x_continuous(expand = c(.025, .025), breaks = NULL, limits = c(-10, 10)) +
+  scale_y_continuous(expand = c(.025, .025), breaks = NULL, limits = c(-10, 10))
+p3
+```
+
+## Como entender o mercado imobiliário (1) {.smaller}
+
+1. A pandemia de Covid-19 acarretou num aumento dos custos de construção, porém
+os juros de longo prazo também cederam:
+
+. . . 
+
+
+```{r}
+#| label: CC
+#| fig-cap: "Elevação dos custos de construção"
+#| out-width: "65%"
+knitr::include_graphics("CC.jpg")
+```
+
+- O aumento dos custos de construção diminui o *output* do mercado de construção,
+o que leva a uma diminuição do estoque, o que por sua vez aumenta o preço dos 
+aluguéis.
+
+## Como entender o mercado imobiliário (2) {.smaller}
+
+2. Após a pandemia, os juros de longo prazo, que haviam caído, voltaram a 
+elevar-se:
+ 
+. . . 
+
+```{r}
+#| label: JURO1
+#| fig-cap: "Elevação dos juros no longo prazo"
+#| out-width: "70%"
+knitr::include_graphics("arte18fin-301-juros-c1.webp")
+```
+
+- O aumento dos juros de longo prazo diminue o apetite dos investidores por
+imóveis e impacta o mercado de construção, o que também leva a aumento dos
+aluguéis.
+
+## Como entender o mercado imobiliário (3) {.smaller}
+
+- Uma visão de prazo maior:
+
+. . . 
+
+```{r}
+#| label: SELIC
+#| fig-cap: "Taxa Selic Real ex-post (evolução). Fonte: https://blogdoibre.fgv.br/posts/evolucao-historica-das-taxas-de-juros-reais-e-de-seus-determinantes-no-brasil"
+#| out-width: "80%"
+knitr::include_graphics("SelicReal_Evolucao.png")
+```
+
+
+## Como entender o mercado imobiliário (4) {.smaller}
+
+3. A atividade econômica vem se recuperando após o baque da pandemia de COVID-19:
+
+. . . 
+
+```{r}
+#| label: PIB2
+#| fig-cap: "Recuperação do PIB após a pandemia"
+#| out-width: "80%"
+knitr::include_graphics("PIB2.png")
+```
+
+- O aumento da atividade econômica leva ao aumento do preço dos aluguéis.
+
+## Como entender o mercado imobiliário (5)
+
+- Resultado:
+
+. . . 
+
+
+```{r}
+#| label: IVAR
+#| fig-cap: "Variação percentual acumulada em 12 meses."
+#| out-width: "80%"
+knitr::include_graphics("IVAR_evolucao.png")
+```
+
+## Como entender o mercado imobiliário (6)
+
+- Para melhor compreender o slide anterior:
+
+. . .
+
+
+```{r}
+#| label: IVAR2
+#| fig-cap: "Variação percentual acumulada em 12 meses."
+#| out-width: "80%"
+knitr::include_graphics("variacao_acumulada_em_12_meses._ivar.jpeg")
+```
+
+
+## Como entender o mercado imobiliário (7)
+
+- Visão de mais longo prazo:
+
+. . . 
+
+
+```{r}
+#| label: rentabilidade
+#| fig-cap: "Rentabilidade do Aluguel (% a.a.)"
+#| out-width: "80%"
+knitr::include_graphics("Rent-Aluguel-resid.jpg")
+```
+
+
+## Referências

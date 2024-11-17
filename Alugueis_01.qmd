@@ -1,0 +1,493 @@
+---
+title: "Availação de Alugueis"
+subtitle: "Parte 01"
+author: "Luiz Fernando Palin Droubi"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+bibliography: referencias.bib
+format: 
+  metropolis-revealjs:
+#    smaller: true
+    keep-md: true
+    incremental: true  
+prefer-html: true
+---
+
+## Introdução {.smaller}
+
+-   Aluguéis são essenciais para a compreensão do mercado imobiliário
+
+    | Estoque          | Fluxo               |
+    |------------------|---------------------|
+    | Riqueza          | Renda               |
+    | Dívida Pública   | Déficit Público     |
+    | Ação             | Dividendo           |
+    | Valor de um casa | Aluguel de uma casa |
+
+    : Fonte: Adaptada de @Malpezzi2002TheRO.
+
+-   Relação entre Estoque e Fluxo:
+
+. . .
+
+```{r}
+CashFlowDiagram <- function(periods, incomes, expenses) {
+  df <- data.frame(Periodo = seq(0, periods, by = 1),
+                   Positive = incomes, Negative = expenses)
+  p <- ggplot(data = df, aes(x = Periodo, xend = Periodo)) +
+    geom_segment(aes(y = 0, yend = Positive, colour = "Positive"),
+    position = "stack", arrow = arrow(length = unit(0.1, "inches")), 
+    size = 1) + 
+  geom_segment(aes(y = 0, yend = Negative, colour = "Negative"), 
+    position = "stack", arrow = arrow(length = unit(0.1, "inches")), 
+    size = 1) + 
+  geom_segment(x = 0, xend = 13, y = 0, yend = 0, size = 1, 
+               arrow = arrow(length = unit(0.1, "inches"))) +
+  scale_x_continuous(breaks = seq(0,periods, by = 1)) +
+  scale_y_continuous(labels = scales::label_currency(),
+    breaks = seq(round(max(expenses, na.rm = T), -2), 
+                 round(max(incomes, na.rm = T), -2), length.out = 5)) +
+  scale_colour_manual("Direction", 
+    values = c("Negative" = "red", "Positive" = "blue")) + 
+  labs(title = "<b style='color:blue'>Entradas</b> e 
+  <b style='color:red'>Saídas</b>", 
+       x = "Período (meses)",
+       y = "Montante") +
+  theme_grey(base_size = 20) +
+  theme(plot.title = ggtext::element_markdown(lineheight = 1.1)) +
+  ggeasy::easy_remove_legend()
+  return(p)
+}
+```
+
+```{r}
+#| label: fig-FC
+#| fig-cap: "Um Fluxo de Caixa Simples"
+#| out-width: "50%"
+library(ggplot2)
+library(ggthemes)
+
+p <- CashFlowDiagram(periods = 12, 
+                     incomes = c(10000, rep(NA, 12)), 
+                     expenses = c(NA, rep(-1000,12)))
+
+p +
+  annotate("text", x = .5, y = 9500, label = "PV", size = 5, color = "blue") +
+  annotate("text", x = seq(1.5, 12.5, by = 1), 
+                   y = rep(-500, 12), label = rep("R", 12), size = 5,
+           color = "red") +
+  annotate("label", x = 6, y = 1000, label = "i(%)", size = 7)
+```
+
+## Essencial de Matemática Financeira {.smaller}
+
+-   Para calcular a renda (ou prestação), dada uma taxa de juros $i$:
+
+    -   $R = PV\frac{(1+i)^n.i}{(1+i)^n-1}$ ou $R = \frac{PV.i}{1-(1+i)^{-n}}$
+
+-   Para calcular o valor presente:
+
+    -   $PV = R\frac{(1+i)^n-1}{(1+i)^n.i}$ ou $PV = \frac{R.(1-(1+i)^{-n})}{i}$
+
+-   Quando são muitas as prestaçãos ($n \rightarrow \infty$):
+
+    -   $$PV = \frac{R}{i}$$
+
+-   Da equação acima derivam:
+
+    -   O método da renda: $V_{imóvel} = \frac{Al}{i}$
+    -   O método da remuneração do capital: $Al = V_{imóvel}.i$
+
+-   Exemplo: $V_{imóvel} = \frac{Al}{i} = \frac{12.3000}{6\%}=\text{ R\$ } 600.000,00$ (conta de padaria!)
+
+-   Mais preciso: $V_{imóvel} = \frac{Al}{i} = \frac{3000}{(1+6\%)^{1/12}-1}=\text{ R\$ } 616.326,40$
+
+## CUIDADO! {.smaller}
+
+-   Deve-se levar em conta:
+
+    -   Taxa de Vacância
+    -   Taxas de administração
+    -   Impostos
+    -   Compensação pela falta de liquidez
+    -   Manutenção e Depreciação
+    -   Valorização
+
+-   Um método é levar em conta estas variáveis na taxa de desconto:
+
+    | Tipo             | Terreno (% a.a.) | Benfeitorias (%a.a.) |
+    |------------------|------------------|----------------------|
+    | Taxa básica      | 8,00%            | 8,00%                |
+    | Não-liquidez     | 1,50%            | 1,50%                |
+    | Depreciação      | \-               | 1,50%                |
+    | Taxa de vacância | \-               | 1,00%                |
+    | Valorização      | -1,50%           | \-                   |
+    | TOTAL            | 8,00%            | 12,50%               |
+
+    : Fonte: Composição de taxas de desconto. Fonte: @damato, p. 86.
+
+## Taxa composta
+
+-   Uma vez obtidas as taxas de desconto para o terreno e para as benfeitorias, pode-se calcular a **taxa composta**:
+
+    -   $i=\frac{V_T.i_T+V_B.i_B}{V_T + V_B}$
+
+-   Com a taxa composta, os valores do terreno e do capital (benfeitorias), pode ser feito o cálculo do valor do aluguel.
+
+-   Exemplo (adaptado de @damato, p. 87):
+
+    -   $V_T = 250.000,00$
+    -   $V_B = 450.000,00$
+    -   $V_I = 795.000,00$ (Fator de Comercialização $\approx$ 14%)
+    -   $i = \frac{250.000.0,08+450.000.0,125}{250.000 + 450.000} = \frac{20.000 + 56.250}{700.000} = 10,89% (a.a.)$
+    -   Taxa ao mês: $i_{mensal} = (1+i_{anual})^{1/12} - 1 = 0,865\%$
+    -   $Al = 795.000,00.0,865\% = \text{R\$ }6.876,75/\text{mês}$
+
+## Método do aluguel líquido
+
+-   Segundo @Malpezzi2002TheRO:
+    -   $$V_{imovel} = \sum_{t=0}^{T}\frac{E(R_t-C_t)}{(1+i)^t} = \sum_{t=0}^{T}\frac{E(R_l)}{(1+i)^t} \approx \frac{R_l}{i}$$
+-   Obs.: A valorização ($g$) pode ser levada em conta subtraindo-a da taxa de desconto [@Malpezzi2002TheRO]:
+    -   $$V_{imovel} = \frac{R_l}{i-g}$$
+    -   $i-g$ é chamada de taxa de capitalização, ou $c$ (cap rate)
+    -   $$V_{imovel} = \frac{R_l}{c}$$
+
+## Método do aluguel líquido {.smaller}
+
+-   Segundo @damato, p. 100, deve-se deduzir, em média, 30% do aluguel bruto!
+
+    -   $V_{imóvel} = \frac{Al}{i} = \frac{12.0,7.3000}{6\%}=\text{ R\$ } 420.000,00$
+
+-   Estimando-se uma taxa de valorização de 2% a.a.:
+
+    -   $V_{imóvel} = \frac{Al}{i} = \frac{12.0,7.3000}{6\%-2\%}=\text{ R\$ } 630.000,00$
+
+-   Valor Presente Líquido: $$VPL = -I + \sum_{t=1}^T \frac{R_t - C_t}{(1+i)^t}$$
+
+-   O VPL também pode ser escrito em função do Fator de Recuperação do Capital (FRC) $$VPL = -I + \frac{R}{FRC(i,T)};\qquad FRC = \frac{i.(1+i)^T}{(1+i)^T-1}$$
+
+-   Para períodos muito longos, $FRC = i$, como já exposto!
+
+## O investimento em imóveis {.smaller}
+
+-   Exemplo:
+    -   Dado que um apartamento está anunciado em R\$ 400.000,00
+    -   Que a sua TMA é igual 10% a.a.
+    -   Que o aluguel do imóvel é R\$ 3.000,00/mês
+    -   Que a expectativa é que o aluguel se reajuste a uma taxa de 1,5% a.a.
+    -   Que os custos são da ordem de 30% do valor do aluguel
+    -   Quanto você pode pagar pelo apartamento?
+-   Solução:
+    -   $$FCA = \frac{8,5\%.(1+8,5\%)^{30}}{(1+8,5\%)^{30}-1} = 9,305\%$$
+    -   $$VPL = -400.000 + \frac{12.(3000-900)}{9,305\%}$$
+    -   $$VPL = -400.000 + 270.822,10 = -129.177,90$$
+    -   R.: R\$ 270.000,00
+
+## O investimento em imóveis {.smaller}
+
+### A casa própria
+
+-   Suponha que:
+    -   Uma casa está anunciada por R\$ 500.000,00
+    -   Você pode financiá-la, mediante entrada de 20% (R\$ 100.000)
+    -   Após adquirí-la, você pagará ao banco uma parcela de R\$ 2.000,00 mensais por 30 anos
+    -   O aluguel da casa é R\$ 3.000,00 mensais
+    -   A sua TMA é de 10% a.a.
+    -   Você compra a casa?
+    -   Considere que não há valor residual e despreze os custos de manutenção da casa!
+-   Solução:
+    -   $$FCA = \frac{10\%.(1+10\%)^{30}}{(1+10\%)^{30}-1} = 10,61\%$$
+    -   $$VPL = -100.000 + \frac{12.(3000-2000)}{10,61\%}$$
+    -   $$VPL = -100.000 + \frac{12.000}{10,61\%} = -100.000 + 113.100,80 = 13.100,80$$
+
+## O investimento em imóveis {.smaller}
+
+### A casa própria (2)
+
+-   Suponha que:
+    -   Um terreno está anunciado por R\$ 100.000,00
+    -   Você quer construir uma casa com orçamento de R\$ 400.000,00
+    -   Você pode fazer ATC, mediante entrada de 20% (R\$ 100.000)
+    -   Você pagará ao banco uma parcela de R\$ 4.000,00 mensais por 30 anos
+    -   O aluguel de uma casa similar é R\$ 3.000,00 mensais
+    -   A sua TMA é de 10% a.a.
+    -   Você espera que o terreno tenha valorização real de 1% a.a.
+    -   Você compra a casa?
+    -   Considere que não há valor residual e despreze os custos de manutenção da casa!
+-   Solução:
+    -   $$FCA = \frac{10\%.(1+10\%)^{30}}{(1+10\%)^{30}-1} = 10,61\%$$
+    -   $$VPL = \frac{100.000.(1+1\%)^{30}}{10,61\%} + \frac{12.(3000-4000)}{10,61\%} = 134.784,90 + \frac{-12.000}{10,61\%} = 21.684,10$$
+
+## O investimento em imóveis
+
+-   Deve-se levar em conta que cada pequeno ajuste, seja na taxa, seja na renda esperada, leva a grandes diferenças no valor do imóvel!
+    -   Isto é esperado, porque o fluxo de caixa é muito extenso!
+-   Se a sensibilidade é alta, o que isso significa?
+    -   Que o risco do investimento é alto!
+
+## Aparte: Administração de carteiras
+
+-   No mercado de capitais existe um almoço grátis: a diversificação!
+
+-   Sejam dois ativos, A e B:
+
+    -   Ambos tem preço de aquisição, na data 0, igual a 100;
+    -   O investidor adquire R\$ 500.000,00 em ativos, sendo 50% do ativo A e 50% do ativo B
+    -   No ano 1, o ativo A valoriza 50%, enquanto o ativo B desvaloriza 50%
+    -   Ao final do primeiro ano, o investidor faz o rebalanceamento da carteira
+    -   No ano 2, o ativo A desvaloriza 33,333% e o ativo B valoriza 100%
+    -   Calcule o valor da carteira ao fim do segundo período
+
+## Aparte: Administração de carteiras (2)
+
+-   Solução:
+
+    | Período | Quant. A | Preço A | Quanto. B | Preço B | TOTAL   |
+    |---------|----------|---------|-----------|---------|---------|
+    | 0       | 2.500    | 100     | 2.500     | 100     | 500.000 |
+    | 1       | 2.500    | 150     | 2.500     | 50      | 500.000 |
+    | 2       | 1.666    | 100     | 5.000     | 100     | 666.600 |
+
+    : Rebalanceamento de carteiras de investimento.
+
+-   É possível fazer isto no mercado imobiliário?
+
+    -   Não, devido aos altos custos de transação!
+    -   Mercado imobiliário não é um mercado perfeito!
+
+# Métodos
+
+## Método da Renda
+
+```{r}
+library(tibble)
+library(kableExtra)
+df <- tribble(
+  ~Id, ~Area, ~Aluguel, ~PrecoVenda, ~Vacancia, ~Despesas,
+  1, 115, 580, 70000, 7, 110,
+  2, 154, 640, 80000, 8, 120,
+  3, 132, 610, 75000, 8, 125,
+  4, 105, 550, 71500, 5, 135,
+  5, 140, 625, 77000, 7, 120,
+  6, 135, 630, 71000, 8, 130,
+  7, 117, 600, 75000, 6, 130
+)
+df |>
+  kable(format = "html",  
+      linesep = "", escape = F, booktabs = T,
+      col.names = c("Id", "Área (m2)", "Aluguel (R$/mês)", 
+                              "Preco de Venda (R$)","Vacância (%)", 
+                              "Despesas Operacionais (R$)"),
+      caption = "Exemplo Método da Renda. Fonte: Apostila Prof. Norberto.",
+      format.args = list(big.mark = ".", decimal.mark = ","),
+      digits= 2)
+```
+
+-   Calcular: valor de mercado de um imóvel com aluguel de R\$ 600,00.
+-   Considerar:
+    -   Taxa de Vacância: 7%; Despesas Operacionais: R\$ 125,00/mês
+
+## Método da Remuneração do Capital (2) {.smaller}
+
+```{r}
+df <- within(df,{
+  Vacancia <- Vacancia*Aluguel/100
+  ReceitaLiquida <- Aluguel - Vacancia - Despesas
+  TaxaLiquida <- 100*ReceitaLiquida/PrecoVenda
+})
+df <- df[, c(1:6, 8, 7)]
+df |>
+  kable(format = "html",  
+      linesep = "", escape = F, booktabs = T,
+      col.names = c("Id", "Área (m2)", "Aluguel (R$/mês)", 
+                    "Preco de Venda (R$)","Vacância (R$)", 
+                    "Despesas Operacionais (R$)", "Renda Líquida (R$)",
+                    "Rentabilidade (%)"),
+      caption = "Exemplo Método da Renda",
+      format.args = list(big.mark = ".", decimal.mark = ","),
+      digits= 2)
+```
+
+-   Rentabilidade média: 0,58% a.m.
+-   Valor da Vacância: 7%\*600 = R\$ 42,00 /mês
+-   Despesas: R\$ 125,00/mês
+-   Renda líquida: 600-42-125 = R\$ 433,00 /mês
+-   Valor do imóvel: $V_{imovel} = \frac{433}{0,58\%}=\text{R\$ }74.655,17$
+
+## Método da Remuneração do Capital {.smaller}
+
+-   Segundo @damato, p. 123:
+
+. . .
+
+> Apesar de ser método de grande aplicação, alguns estudiosos já estão percebendo a inversão "causa-efeito" da premissa de que todo imóvel vale (efeito) pela sua capacidade de produzir renda (causa). Talvez o fato de se partir do "efeito" (valor do imóvel) para se obter a "causa" (renda) conduza a resultados distorcidos da realidade, a menos que nos cálculos se apliquem múltiplos fatores corretivos; para o terreno: localização, área, testada, profundidade, formato, sub ou superaproveitamento; para a construção: áreas privativa e total, grupamento, padrão, idade, estado de conservação, distribuição entre andares e dos ambientes (layout). \[…\] Na realidade se verifica que são dois mercados diferentes, o de venda e o de locação, com tendência, comportamentos e público alvo também diversos.
+
+-   Obs. Droubi:
+    -   São dois mercados diferentes!
+    -   Mas eles se equilibram!
+
+## Método da Remuneração do Capital
+
+-   É o inverso do método da renda [@damato, p. 95]!
+
+. . .
+
+> "quando usado inversamente, para fixação de aluguéis, o método denominar-se-á da remuneração dos capitais"
+
+-   A taxa de remuneração deve ser determinada mediante pesquisa, conforme item 11.4.2 da NBR 14.653-2 [-@NBR1465302]:
+
+. . .
+
+> A taxa de remuneração deve ser objeto de pesquisa específica para cada caso, pois varia para cada tipo de imóvel, localização e, também ao longo do tempo, dependendo da conjuntura econômica.
+
+## Método da Remuneração do Capital {.smaller}
+
+-   Exemplo [@damato, 94]:
+
+. . .
+
+```{r}
+df <- tribble(
+  ~PrecoVenda, ~Aluguel,
+       420000,  2000.00,
+       450000,  2800.00,
+       320000,  1400.00,
+       260000,  1250.00,
+       460000,  2700.00,
+       690000,  4000.00,
+       650000,  3800.00,
+       380000,  1240.00,
+       550000,  3300.00,
+       560000,  3500.00,
+       420000,  2500.00,
+       320000,  1800.00,
+       430000,  2500.00,
+       290000,  1300.00,
+)
+df$Id <- 1:nrow(df)
+df <- df[, c(3,1,2)]
+df |>
+  kable(format = "html", col.names = c("Id", "Preco de Venda (R$)", 
+                                       "Aluguel (R$/mês)"),
+      caption = "Exemplo Método da Remuneração do Capital.",
+      format.args = list(big.mark = ".", decimal.mark = ","),
+      digits= 2)
+```
+
+## Método da Remuneração do Capital {.smaller}
+
+-   Exemplo [@damato, 94]:
+
+. . .
+
+```{r}
+df <- within(df, {
+  TaxaMensal <- Aluguel/PrecoVenda
+  TaxaAnual <- (1 + TaxaMensal)^12 - 1
+  TaxaMensal <- 100*TaxaMensal
+  TaxaAnual <- 100*TaxaAnual
+})
+df <- df[, c(1:3, 5, 4)]
+df |>
+  kable(format = "html", col.names = c("Id", "Preco de Venda (R$)", 
+                                       "Aluguel (R$/mês)", "Taxa Mensal (%)",
+                                       "Taxa Anual (%)"),
+      caption = "Exemplo Método da Remuneração do Capital.",
+      format.args = list(big.mark = ".", decimal.mark = ","),
+      digits= 2)
+```
+
+## Método da Remuneração do Capital {.smaller}
+
+-   Determinação da taxa média:
+
+. . .
+
+```{r}
+#| echo: true
+t.test(df$TaxaAnual, conf.level = .80)
+```
+
+-   Taxa média: 6,63% \[6,23%; 7,03%\] a.a.
+
+-   Imagine-se que agora pretenda-se avaliar um imóvel de valor de venda igual a R\$ 500.000,00
+
+-   Adotando-se a taxa de remuneração do capital estimada (6,63%a.a.\[6,23; 7,03\]), tem-se:
+
+    -   $Al =500.000.6,63\%/12 \approx$ R\$ 2.750,00/mês
+    -   $Al =500.000.6,23\%/12 \approx$ R\$ 2.600,00/mês
+    -   $Al =500.000.7,03\%/12 \approx$ R\$ 2.900,00/mês
+
+-   O valor locativo estimado, portanto, é de R\$ 2.750,00 \[2.600,00; 2.900,00\]
+
+## CUIDADO! {.smaller}
+
+-   Em uma perícia, faça isto:
+
+. . .
+
+```{r}
+#| echo: true
+t.test(df$TaxaMensal, conf.level = .80)
+```
+
+-   Adotando-se a taxa de remuneração do capital estimada (0,54%a.m.\[0,50; 0,57\]), tem-se:
+    -   $Al =500.000.0,54\% \approx$ R\$ 2.700,00/mês
+    -   $Al =500.000.0,50\% \approx$ R\$ 2.500,00/mês
+    -   $Al =500.000.0,57\% \approx$ R\$ 2.850,00/mês
+-   O valor locativo estimado, portanto, é de R\$ 2.700,00 \[2.500,00; 2.800,00\]
+
+## Método da Remuneração do Capital
+
+-   Mesmos dados de @damato, p. 94:
+
+. . .
+
+```{r}
+#| out-width: "70%"
+library(ggpmisc)
+ggplot(df, aes(x = PrecoVenda, y = Aluguel)) +
+  geom_point() +
+  stat_poly_line() +
+  stat_poly_eq(use_label(c("eq", "R2")), size = 6) +
+  geom_segment(x = 500000, xend = 500000, y=0, yend = 2840, color = "red", size=1.5) +
+  geom_segment(x = 0, xend = 500000, y = 2840, yend = 2840, 
+               color = "red", size=1.5) +
+  theme_grey(base_size = 20)
+```
+
+. . .
+
+```{r}
+#| echo: true
+fit <- lm(Aluguel ~ PrecoVenda, data = df)
+predict(fit, newdata = list(PrecoVenda = 500000), interval = "confidence", level = .80)
+```
+
+## Método da Remuneração do Capital
+
+-   Mesmos dados de @damato, p. 94 (passando pela origem):
+
+. . .
+
+```{r}
+#| out-width: "70%"
+library(ggpmisc)
+ggplot(df, aes(x = PrecoVenda, y = Aluguel)) +
+  geom_point() +
+  stat_poly_line(formula = y ~ x - 1) +
+  stat_poly_eq(use_label(c("eq", "R2")), size = 6, formula = y ~ x - 1) +
+  geom_segment(x = 500000, xend = 500000, y=0, yend = 2808, color = "red", size=1.5) +
+  geom_segment(x = 0, xend = 500000, y = 2808, yend = 2808, 
+               color = "red", size=1.5) +
+  theme_grey(base_size = 20)
+```
+
+. . .
+
+```{r}
+#| echo: true
+fit <- lm(Aluguel ~ PrecoVenda - 1, data = df)
+predict(fit, newdata = list(PrecoVenda = 500000), interval = "confidence", level = .80)
+```
+
+## Referências
