@@ -14,8 +14,8 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Luiz Fernando Palin Droubi">
-  <meta name="dcterms.date" content="2025-05-11">
-  <title>Availação de Alugueis</title>
+  <meta name="dcterms.date" content="2025-11-11">
+  <title>Avaliação de Aluguéis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -415,7 +415,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Availação de Alugueis</h1>
+  <h1 class="title">Avaliação de Aluguéis</h1>
   <p class="subtitle">Parte 01</p>
 
 <div class="quarto-title-authors">
@@ -426,7 +426,7 @@ Luiz Fernando Palin Droubi
 </div>
 </div>
 
-  <p class="date">2025-05-11</p>
+  <p class="date">2025-11-11</p>
 </section>
 <section id="introdução" class="slide level2 smaller">
 <h2>Introdução</h2>
@@ -459,51 +459,629 @@ Luiz Fernando Palin Droubi
 </tr>
 </tbody>
 </table></li>
-<li class="fragment"><p>Relação entre Estoque e Fluxo:</p></li>
+<li class="fragment"><p>Os imóveis são bens heterogêneos:</p>
+<ul>
+<li class="fragment">Assim como utilizamos os imóveis para morar</li>
+<li class="fragment">Utilizamos os imóveis para auferir renda imobiliária</li>
+<li class="fragment">Assim, os imóveis são bens de consumo (“<em>service logement</em>”, de acordo com <span class="citation" data-cites="granelle lacerda2020">(<a href="#/referências" role="doc-biblioref" onclick="">GRANELLE 1998</a>; <em>apud</em> <a href="#/referências" role="doc-biblioref" onclick="">Lacerda and Abramo 2020</a>)</span>)</li>
+<li class="fragment">Mas também são “bien d’investissement” (Idem)</li>
+</ul></li>
 </ul>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-FC" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-FC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="Alugueis_01_files/figure-revealjs/fig-FC-1.png" style="width:50.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-FC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</section>
+<section id="relação-entre-estoque-e-fluxo" class="slide level2">
+<h2>Relação entre Estoque e Fluxo:</h2>
+
+<img data-src="Alugueis_01_files/figure-revealjs/fig-FC-1.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">
 Figure&nbsp;1: Um Fluxo de Caixa Simples
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
+</p></section>
+<section>
+<section id="matemática-financeira" class="title-slide slide level1 center">
+<h1>Matemática Financeira</h1>
+
 </section>
 <section id="essencial-de-matemática-financeira" class="slide level2 smaller">
 <h2>Essencial de Matemática Financeira</h2>
 <ul>
-<li class="fragment"><p>Para calcular a renda (ou prestação), dada uma taxa de juros <span class="math inline">\(i\)</span>:</p>
+<li class="fragment">Valor Presente Líquido de um investimento:</li>
+</ul>
+<div class="fragment">
+<p><span id="eq-vpl"><span class="math display">\[
+VPL = -I + \sum_{t=1}^T \frac{R_t - C_t}{(1+i)^t}
+\qquad(1)\]</span></span></p>
 <ul>
-<li class="fragment"><span class="math inline">\(R = PV\frac{(1+i)^n.i}{(1+i)^n-1}\)</span> ou <span class="math inline">\(R = \frac{PV.i}{1-(1+i)^{-n}}\)</span></li>
-</ul></li>
-<li class="fragment"><p>Para calcular o valor presente:</p>
+<li class="fragment">Quando o fluxo de caixa é constante, o VPL também pode ser escrito em função do Fator de Recuperação do Capital (FRC):</li>
+</ul>
+</div>
+<div class="fragment">
+<p><span id="eq-vpl2"><span class="math display">\[
+VPL = -I + \frac{R_l}{FRC(i,T)}
+\qquad(2)\]</span></span></p>
 <ul>
-<li class="fragment"><span class="math inline">\(PV = R\frac{(1+i)^n-1}{(1+i)^n.i}\)</span> ou <span class="math inline">\(PV = \frac{R.(1-(1+i)^{-n})}{i}\)</span></li>
-</ul></li>
-<li class="fragment"><p>Quando são muitas as prestaçãos (<span class="math inline">\(n \rightarrow \infty\)</span>):</p>
+<li class="fragment">Pode-se considerar, ainda, um valor residual <span class="math inline">\(D\)</span> ao final do período de análise:</li>
+</ul>
+</div>
+<div class="fragment">
+<p><span id="eq-vpl3"><span class="math display">\[
+VPL = -I + \frac{R_l}{FRC(i,T)} + D.FAC(i,T)
+\qquad(3)\]</span></span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <ul>
-<li class="fragment"><span class="math display">\[PV = \frac{R}{i}\]</span></li>
-</ul></li>
-<li class="fragment"><p>Da equação acima derivam:</p>
+<li class="fragment"><span id="eq-frc"><span class="math display">\[FRC(i, T) = \frac{i.(1+i)^T}{(1+i)^T-1} \qquad(4)\]</span></span></li>
+</ul>
+</div><div class="column" style="width:50%;">
 <ul>
-<li class="fragment">O método da renda: <span class="math inline">\(V_{imóvel} = \frac{Al}{i}\)</span></li>
-<li class="fragment">O método da remuneração do capital: <span class="math inline">\(Al = V_{imóvel}.i\)</span></li>
+<li class="fragment"><span id="eq-fac"><span class="math display">\[FAC(i,T) = \frac{1}{(1+i)^T} \qquad(5)\]</span></span></li>
+</ul>
+</div></div>
+</div>
+</section>
+<section id="essencial-de-matemática-financeira-1" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<ul>
+<li class="fragment"><p>FRC e FAC podem ser tabelados!</p></li>
+<li class="fragment"><p>FRC:</p></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">1%</th>
+<th style="text-align: right;">2%</th>
+<th style="text-align: right;">3%</th>
+<th style="text-align: right;">4%</th>
+<th style="text-align: right;">5%</th>
+<th style="text-align: right;">6%</th>
+<th style="text-align: right;">7%</th>
+<th style="text-align: right;">8%</th>
+<th style="text-align: right;">9%</th>
+<th style="text-align: right;">10%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.0100</td>
+<td style="text-align: right;">1.0200</td>
+<td style="text-align: right;">1.0300</td>
+<td style="text-align: right;">1.0400</td>
+<td style="text-align: right;">1.0500</td>
+<td style="text-align: right;">1.0600</td>
+<td style="text-align: right;">1.0700</td>
+<td style="text-align: right;">1.0800</td>
+<td style="text-align: right;">1.0900</td>
+<td style="text-align: right;">1.1000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.5075</td>
+<td style="text-align: right;">0.5150</td>
+<td style="text-align: right;">0.5226</td>
+<td style="text-align: right;">0.5302</td>
+<td style="text-align: right;">0.5378</td>
+<td style="text-align: right;">0.5454</td>
+<td style="text-align: right;">0.5531</td>
+<td style="text-align: right;">0.5608</td>
+<td style="text-align: right;">0.5685</td>
+<td style="text-align: right;">0.5762</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.3400</td>
+<td style="text-align: right;">0.3468</td>
+<td style="text-align: right;">0.3535</td>
+<td style="text-align: right;">0.3603</td>
+<td style="text-align: right;">0.3672</td>
+<td style="text-align: right;">0.3741</td>
+<td style="text-align: right;">0.3811</td>
+<td style="text-align: right;">0.3880</td>
+<td style="text-align: right;">0.3951</td>
+<td style="text-align: right;">0.4021</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.2563</td>
+<td style="text-align: right;">0.2626</td>
+<td style="text-align: right;">0.2690</td>
+<td style="text-align: right;">0.2755</td>
+<td style="text-align: right;">0.2820</td>
+<td style="text-align: right;">0.2886</td>
+<td style="text-align: right;">0.2952</td>
+<td style="text-align: right;">0.3019</td>
+<td style="text-align: right;">0.3087</td>
+<td style="text-align: right;">0.3155</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.2060</td>
+<td style="text-align: right;">0.2122</td>
+<td style="text-align: right;">0.2184</td>
+<td style="text-align: right;">0.2246</td>
+<td style="text-align: right;">0.2310</td>
+<td style="text-align: right;">0.2374</td>
+<td style="text-align: right;">0.2439</td>
+<td style="text-align: right;">0.2505</td>
+<td style="text-align: right;">0.2571</td>
+<td style="text-align: right;">0.2638</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.1725</td>
+<td style="text-align: right;">0.1785</td>
+<td style="text-align: right;">0.1846</td>
+<td style="text-align: right;">0.1908</td>
+<td style="text-align: right;">0.1970</td>
+<td style="text-align: right;">0.2034</td>
+<td style="text-align: right;">0.2098</td>
+<td style="text-align: right;">0.2163</td>
+<td style="text-align: right;">0.2229</td>
+<td style="text-align: right;">0.2296</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li class="fragment">FAC:</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">1%</th>
+<th style="text-align: right;">2%</th>
+<th style="text-align: right;">3%</th>
+<th style="text-align: right;">4%</th>
+<th style="text-align: right;">5%</th>
+<th style="text-align: right;">6%</th>
+<th style="text-align: right;">7%</th>
+<th style="text-align: right;">8%</th>
+<th style="text-align: right;">9%</th>
+<th style="text-align: right;">10%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.9901</td>
+<td style="text-align: right;">0.9804</td>
+<td style="text-align: right;">0.9709</td>
+<td style="text-align: right;">0.9615</td>
+<td style="text-align: right;">0.9524</td>
+<td style="text-align: right;">0.9434</td>
+<td style="text-align: right;">0.9346</td>
+<td style="text-align: right;">0.9259</td>
+<td style="text-align: right;">0.9174</td>
+<td style="text-align: right;">0.9091</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.9803</td>
+<td style="text-align: right;">0.9612</td>
+<td style="text-align: right;">0.9426</td>
+<td style="text-align: right;">0.9246</td>
+<td style="text-align: right;">0.9070</td>
+<td style="text-align: right;">0.8900</td>
+<td style="text-align: right;">0.8734</td>
+<td style="text-align: right;">0.8573</td>
+<td style="text-align: right;">0.8417</td>
+<td style="text-align: right;">0.8264</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.9706</td>
+<td style="text-align: right;">0.9423</td>
+<td style="text-align: right;">0.9151</td>
+<td style="text-align: right;">0.8890</td>
+<td style="text-align: right;">0.8638</td>
+<td style="text-align: right;">0.8396</td>
+<td style="text-align: right;">0.8163</td>
+<td style="text-align: right;">0.7938</td>
+<td style="text-align: right;">0.7722</td>
+<td style="text-align: right;">0.7513</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.9610</td>
+<td style="text-align: right;">0.9238</td>
+<td style="text-align: right;">0.8885</td>
+<td style="text-align: right;">0.8548</td>
+<td style="text-align: right;">0.8227</td>
+<td style="text-align: right;">0.7921</td>
+<td style="text-align: right;">0.7629</td>
+<td style="text-align: right;">0.7350</td>
+<td style="text-align: right;">0.7084</td>
+<td style="text-align: right;">0.6830</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.9515</td>
+<td style="text-align: right;">0.9057</td>
+<td style="text-align: right;">0.8626</td>
+<td style="text-align: right;">0.8219</td>
+<td style="text-align: right;">0.7835</td>
+<td style="text-align: right;">0.7473</td>
+<td style="text-align: right;">0.7130</td>
+<td style="text-align: right;">0.6806</td>
+<td style="text-align: right;">0.6499</td>
+<td style="text-align: right;">0.6209</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.9420</td>
+<td style="text-align: right;">0.8880</td>
+<td style="text-align: right;">0.8375</td>
+<td style="text-align: right;">0.7903</td>
+<td style="text-align: right;">0.7462</td>
+<td style="text-align: right;">0.7050</td>
+<td style="text-align: right;">0.6663</td>
+<td style="text-align: right;">0.6302</td>
+<td style="text-align: right;">0.5963</td>
+<td style="text-align: right;">0.5645</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="essencial-de-matemática-financeira-2" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<ul>
+<li class="fragment">Exemplo 1:
+<ul>
+<li class="fragment">Compra de um carro por R$ 95.000,00 à vista, deixando de pagar aluguel de R$ 24.000,00/ano.</li>
+<li class="fragment">Em 5 anos, a uma TMA de 8,0% a.a., este investimento se paga?</li>
+<li class="fragment">Desconsiderar seguros, IPVA, etc.
+<ul>
+<li class="fragment"><span class="math inline">\(I = 95.000,00\)</span>, <span class="math inline">\(R = 24.000,00\)</span>, <span class="math inline">\(i=8,00\% a.a.\)</span>, <span class="math inline">\(T=5\)</span></li>
+<li class="fragment"><span class="math inline">\(FRC(8\%, 5) = \frac{0,08.(1+0,08)^{5}}{(1+0,08)^{5}-1} \approx 0,25\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL = -95.000 + 24.000/0,25 = -95.000 + 96.000\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL \approx - 1.000,00\)</span></li>
 </ul></li>
-<li class="fragment"><p>Exemplo: <span class="math inline">\(V_{imóvel} = \frac{Al}{i} = \frac{12.3000}{6\%}=\text{ R\$ } 600.000,00\)</span> (conta de padaria!)</p></li>
-<li class="fragment"><p>Mais preciso: <span class="math inline">\(V_{imóvel} = \frac{Al}{i} = \frac{3000}{(1+6\%)^{1/12}-1}=\text{ R\$ } 616.326,40\)</span></p></li>
+</ul></li>
+<li class="fragment">Exemplo 2:
+<ul>
+<li class="fragment">Mesmo exemplo anterior, considerando que o carro pode ser vendido a 60% do valor de aquisição ao final do período.</li>
+<li class="fragment">Considerar também um custo de R$ 12.000,00 por ano em manutenções, IPVA, etc.
+<ul>
+<li class="fragment"><span class="math inline">\(I = 95.000,00\)</span>, <span class="math inline">\(R = 24.000,00\)</span>, <span class="math inline">\(C = 12.000\)</span>, <span class="math inline">\(i=8,00\% a.a.\)</span>, <span class="math inline">\(T=5\)</span>, <span class="math inline">\(VF = 57.000\)</span></li>
+<li class="fragment"><span class="math inline">\(FAC(8\%,5) = 1/(1 +.08)^5 =0,6806\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL = -95.000 + (24.000-12.000)/0,25 +  57.000\times0,6806 \approx -95.000 + 48.000 + 38.800\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL \approx -8.200,00\)</span></li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
-<section id="cuidado" class="slide level2 smaller">
-<h2>CUIDADO!</h2>
+<section id="essencial-de-matemática-financeira-3" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<ul>
+<li class="fragment">Exemplo 3:
+<ul>
+<li class="fragment">Compra de uma geladeira de R$ 4.000,00 em 12x R$ 400,00, com uma TMA igual a 10,0 % a.a.:
+<ul>
+<li class="fragment"><span class="math inline">\(I = -4.000\)</span>, <span class="math inline">\(R = -400\)</span>, <span class="math inline">\(i = (1+0,01)^{1/12} - 1 = 0,80\% a.m.\)</span></li>
+<li class="fragment"><span class="math inline">\(FRC(0,8\%, 12) = \frac{0,008.(1+0,008)^{12}}{(1+0,008)^{12}-1} = 0,0877\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL = -(-4.000) + (-400)/0,0877 = 4.000 - 4.561,00\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL \approx -560,00\)</span></li>
+</ul></li>
+</ul></li>
+<li class="fragment">Exemplo 4:
+<ul>
+<li class="fragment">Considerar que com a nova geladeira haverá uma economia de R$50,00 mensais com energia:
+<ul>
+<li class="fragment"><span class="math inline">\(I = -4.000\)</span>, <span class="math inline">\(R = -400\)</span>, <span class="math inline">\(C = -50,00\)</span>, <span class="math inline">\(i = (1+0,08)^{1/12} - 1 = 0,80\% a.m.\)</span></li>
+<li class="fragment"><span class="math inline">\(FRC(0,8\%, 12) = 0,0877\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL = -(-4.000) + [-400 - (-50)]/0,0877 = 4.000 - 350/0,0877\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL  \approx 10,00\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="reflexões" class="slide level2 smaller">
+<h2>Reflexões</h2>
+<ul>
+<li class="fragment">O importante é compreender o problema, ao invés de apenas aplicar as fórmulas
+<ul>
+<li class="fragment">No caso do carro, a ideia geral não é um cálculo exato, mas apenas criar uma percepção se vale a pena comprar ou alugar um carro
+<ul>
+<li class="fragment">Dificilmente os valores do fluxo de caixa real serão idênticos aos previstos</li>
+<li class="fragment">O problema pode ser posto de maneira simplificada, inicialmente.</li>
+<li class="fragment">Após uma primeira conta para aferir a ordem de grandeza das parcelas, o problema pode ser feito mais complexo</li>
+</ul></li>
+<li class="fragment">No caso da geladeira, o importante é perceber:
+<ul>
+<li class="fragment">A decisão pode ser entre comprar a geladeira agora de forma parcelada, ou guardar o dinheiro das prestações para comprar depois, à vista!</li>
+<li class="fragment">Se a pessoa opta por comprar a geladeira à vista após o período de 12 meses, ela deixou de economizar R$ 50,00 mensais com a conta de energia durante este período</li>
+<li class="fragment">Seria um erro desconsiderar esta economia “operacional”</li>
+<li class="fragment">A decisão entre comprar agora ou comprar depois depende também de outras coisas. Quem garante que a geladeira estará por R$ 4.000,00 daqui a 12 meses?</li>
+</ul></li>
+</ul></li>
+<li class="fragment">A TMA é exclusividade do empreendedor/indivíduo!
+<ul>
+<li class="fragment">Se o cidadão tem guardado apenas R$ 4.000,00, ele só irá comprar a geladeira à vista se ele tiver um ótimo desconto!</li>
+<li class="fragment">Se o cidadão possui uma boa poupança e R$ 4.000,00 não é para ele um montante significativo, então ele pode comprar a vista, por mínimo que seja o desconto.</li>
+</ul></li>
+</ul>
+</section>
+<section id="essencial-de-matemática-financeira-4" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<ul>
+<li class="fragment"><p>Para períodos muito longos (<span class="math inline">\(n \rightarrow \infty\)</span>), <span class="math inline">\(FRC = i\)</span>!</p></li>
+<li class="fragment"><p>Exemplo: taxa de 10%a.a., durante 30/40/50 anos, calcule a FRC:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(FRC(10\%,30) = \frac{10\%.(1+10\%)^{30}}{(1+10\%)^{30}-1} = \frac{10\%.17,45}{16,45} = 0,1061 = 10,61\%\)</span></li>
+<li class="fragment"><span class="math inline">\(FRC(10\%,40) = \frac{10\%.(1+10\%)^{40}}{(1+10\%)^{40}-1} = \frac{10\%.45,26}{44,26} = 0,1023 = 10,23\%\)</span></li>
+<li class="fragment"><span class="math inline">\(FRC(10\%,50) = \frac{10\%.(1+10\%)^{50}}{(1+10\%)^{50}-1} = \frac{10\%.117,39}{116,39} = 0,1009 = 10,09\%\)</span></li>
+</ul></li>
+<li class="fragment"><p>Assim, para investimentos com FC muito longos, a equação <a href="#/essencial-de-matemática-financeira" class="quarto-xref">2</a> torna-se:</p>
+<ul>
+<li class="fragment"><span id="eq-vpl3"><span class="math display">\[VPL = -I + \frac{R}{i} \qquad(6)\]</span></span></li>
+</ul></li>
+<li class="fragment"><p>Da equação <a href="#/essencial-de-matemática-financeira" class="quarto-xref">6</a> derivam (VPL = 0):</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">O método da renda: <span id="eq-metodoRenda"><span class="math display">\[V_{imóvel} = \frac{Al}{i} \qquad(7)\]</span></span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">O método da remuneração do capital: <span id="eq-metodoRemuneracaoCapital"><span class="math display">\[Al = V_{imóvel}.i \qquad(8)\]</span></span></li>
+</ul>
+</div></div>
+</section>
+<section id="essencial-de-matemática-financeira-5" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<h3 id="métoda-da-renda">Métoda da Renda</h3>
+<ul>
+<li class="fragment">Um imóvel tem aluguel igual a R$ 3.000,00 mensais, calcule seu valor de venda:
+<ul>
+<li class="fragment"><span class="math display">\[V_{imóvel} = \frac{Al}{i} = \frac{12.3000}{6\%}=\text{ R\$ } 600.000,00\]</span></li>
+</ul></li>
+<li class="fragment">Mais preciso:</li>
+<li class="fragment"><span class="math display">\[V_{imóvel} = \frac{Al}{i} = \frac{3000}{(1+6\%)^{1/12}-1}=\text{ R\$ } 616.326,40\]</span></li>
+</ul>
+<h3 id="método-da-recuperação-do-capital">Método da Recuperação do Capital</h3>
+<ul>
+<li class="fragment">Um imóvel possui VM de R$ 500.000,00, calcule o valor justo do aluguel, para uma taxa de 6% a.a.
+<ul>
+<li class="fragment"><span class="math display">\[Al = V_{imóvel}.i = \frac{500.000\times6\%}{12}=\text{ R\$ } 2.500,00\]</span></li>
+</ul></li>
+<li class="fragment">Mais preciso:
+<ul>
+<li class="fragment"><span class="math display">\[Al = V_{imóvel}.i = 500.000\times[(1+6\%)^{1/12}-1] \approx \text{ R\$ } 2.435,00\]</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="essencial-de-matemática-financeira-6" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<ul>
+<li class="fragment"><p>Para calcular a renda (ou prestação de um empréstimo) sobre um valor presente de um ativo, dada uma taxa de juros <span class="math inline">\(i\)</span>, em <span class="math inline">\(n\)</span> períodos, basta considerar <span class="math inline">\(VPL = 0\)</span> e substituir (<a href="#/essencial-de-matemática-financeira" class="quarto-xref">4</a>) em (<a href="#/essencial-de-matemática-financeira" class="quarto-xref">2</a>):</p>
+<ul>
+<li class="fragment"><span class="math inline">\(R = PV\frac{i.(1+i)^n}{(1+i)^n-1}\)</span> ou <span class="math inline">\(R = \frac{PV.i}{1-(1+i)^{-n}}\)</span></li>
+<li class="fragment">Exemplo:
+<ul>
+<li class="fragment">Dado um valor presente de R$ 4.000,00, a uma taxa de 0,76% a.m., calcule a prestação para pagamento em 12x:</li>
+<li class="fragment"><span class="math inline">\(R = \frac{4000.0,76\%}{1-(1+0,76\%)^{-12}} = \frac{30,4}{1 - 0,91315} \approx 350,00\)</span></li>
+</ul></li>
+</ul></li>
+<li class="fragment"><p>Para calcular o valor presente, dada a renda, os juros e número de prestações:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(PV = R\frac{(1+i)^n-1}{i.(1+i)^n}\)</span> ou <span class="math inline">\(PV = \frac{R.(1-(1+i)^{-n})}{i}\)</span></li>
+<li class="fragment">Exemplo:
+<ul>
+<li class="fragment">Dada uma prestação de R$ 1.000 mensais, a uma taxa de juros de 0,64% a.m., calcular o valor presente, considerando n = 60</li>
+<li class="fragment"><span class="math inline">\(PV = \frac{1.000.(1-(1+0,64\%)^{-60})}{0,64\%}=\frac{1.000.(1-0,6819)}{0,64\%}\)</span></li>
+<li class="fragment"><span class="math inline">\(PV \approx 49.700,00\)</span></li>
+</ul></li>
+</ul></li>
+<li class="fragment"><p>O período de capitalização importa!</p></li>
+</ul>
+</section>
+<section id="essencial-de-matemática-financeira-7" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<ul>
+<li class="fragment"><p>Revisitando o exemplo 2:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(I = 95.000,00\)</span>, <span class="math inline">\(R = 2.000,00\)</span>, <span class="math inline">\(C = 1.000\)</span>, <span class="math inline">\(i=0,64\% a.m.\)</span>, <span class="math inline">\(T=60\)</span>, <span class="math inline">\(VF = 57.000\)</span></li>
+<li class="fragment"><span class="math inline">\(FRC(0,64\%, 60) = \frac{0,0064.(1+0,0064)^{60}}{(1+0,0064)^{60}-1} \approx 0,02\)</span></li>
+<li class="fragment"><span class="math inline">\(FAC(0,64\%, 60) \approx FAC(8\%, 5) = 0,6806\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL = -95.000 + \frac{2.000-1.000}{0,02} +  57.000\times 0,6806 = -95.000 + 50.000 + 38.800\)</span></li>
+<li class="fragment"><span class="math inline">\(VPL \approx -6.200,00\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="essencial-de-matemática-financeira-8" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<h3 id="taxa-interna-de-retorno">Taxa interna de retorno</h3>
+<ul>
+<li class="fragment"><p>Dados os valores do investimento (<span class="math inline">\(I\)</span>), a Renda (<span class="math inline">\(R\)</span>), o Custo (<span class="math inline">\(C\)</span>) e o número de períodos (<span class="math inline">\(T\)</span>), a TIR é o valor da taxa <span class="math inline">\(i\)</span> que zera o VPL na equação <a href="#/essencial-de-matemática-financeira" class="quarto-xref">1</a>:</p>
+<ul>
+<li class="fragment"><span id="eq-tir"><span class="math display">\[0 = -I  + \sum_{t=1}^T \frac{R_t - C_t}{(1+TIR)^t} \qquad(9)\]</span></span></li>
+</ul></li>
+<li class="fragment"><p>Se <span class="math inline">\(TIR &gt; TMA\)</span>: aceita-se o projeto!</p></li>
+<li class="fragment"><p>Caso contrário, rejeita-se!</p></li>
+<li class="fragment"><p>A TIR é muito utilizada nas empresas para comparar diferentes projetos</p></li>
+<li class="fragment"><p>Por exemplo:</p>
+<ul>
+<li class="fragment">Construtora pode investir R$ 1.000.000,00 num terreno cujo VGV estimado é de R$ 10.000.000,00, com prazo de entrega de 5 anos</li>
+<li class="fragment">Ou pode investir R$ 800.000,00 em outro terreno cujo VGV estimado é de R$ 8.000.000,00, com prazo de entrega de 4 anos</li>
+<li class="fragment">Considere que as receitas sejam constantes, anualmente.</li>
+<li class="fragment">Considere que o lucro sobre as receitas seja de 20%</li>
+<li class="fragment">Se a TMA da construtora é de 15% a.a., qual projeto escolher?</li>
+</ul></li>
+</ul>
+</section>
+<section id="essencial-de-matemática-financeira-9" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<h3 id="comparação-por-vpl">Comparação por VPL</h3>
+<ul>
+<li class="fragment">Cálculo dos FRC:
+<ul>
+<li class="fragment"><span class="math inline">\(FRC(15\%, 5) = \frac{0,15.(1+0,15)^5}{(1+0,15)^5-1} = 0,2983\)</span></li>
+<li class="fragment"><span class="math inline">\(FRC(15\%, 4) = \frac{0,15.(1+0,15)^4}{(1+0,15)^4-1} = 0,3503\)</span></li>
+</ul></li>
+<li class="fragment">Cálculo dos VPL:
+<ul>
+<li class="fragment"><span class="math display">\[VPL_1 = -1.000.000 + \frac{20\% 2.000.000}{0,2983} = \frac{400.000}{0,2983} = R\$ 340.931,90\]</span></li>
+<li class="fragment"><span class="math display">\[VPL_2 = -800.000 + \frac{20\% 2.000.000}{0,3503} = \frac{400.000}{0,3503} = R\$ 341.878,40\]</span></li>
+<li class="fragment">Os dois projetos são aceitáveis! Os VPL’s são praticamente idênticos!</li>
+</ul></li>
+<li class="fragment">Analisando os FC e os VPL, algumas pessoas podem pensar:
+<ul>
+<li class="fragment">“Os dois projetos são similares, porém no primeiro a construtora lucra por 1 ano a mais”</li>
+<li class="fragment">“A construtora investe 200.000 a mais, porém fatura 25% mais e portanto lucra 400.000 a mais”!
+<ul>
+<li class="fragment">“Portanto, vale a pena investir 200.000 mais e fazer o projeto com maior VGV!”</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="essencial-de-matemática-financeira-10" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<h3 id="comparação-por-tir">Comparação por TIR</h3>
+<ul>
+<li class="fragment">Cálculos das TIR:
+<ul>
+<li class="fragment"><span class="math display">\[TIR_1 \Rightarrow 0 = -1.000.000  + \sum_{t=1}^5 \frac{400.000}{(1+TIR_1)^5}\]</span>
+<ul>
+<li class="fragment"><span class="math display">\[TIR_1 = 28,65\%\]</span></li>
+</ul></li>
+<li class="fragment"><span class="math display">\[TIR_2 \Rightarrow 0 = -800.000  + \sum_{t=1}^4 \frac{400.000}{(1+TIR_1)^4}\]</span>
+<ul>
+<li class="fragment"><span class="math display">\[TIR_2 = 34,90\%\]</span></li>
+</ul></li>
+</ul></li>
+<li class="fragment">Ao contrário do raciocínio falacioso do último slide, a TIR elenca o projeto 2 como o mais rentável para a construtora!</li>
+</ul>
+</section>
+<section id="essencial-de-matemática-financeira-11" class="slide level2 smaller">
+<h2>Essencial de Matemática Financeira</h2>
+<h3 id="indicadores-rentabilidade-e-lucratividade">Indicadores: rentabilidade e lucratividade</h3>
+<ul>
+<li class="fragment">Lucratividade: a lucratividade é a razão do lucro líquido sobre a receita bruta:´</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Projeto 1: <span class="math display">\[L_1 = \frac{L_{líquido}}{R_{bruta}} = \frac{400.000}{2.000.000} = 20\%/\text{ano}\]</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Projeto 2: <span class="math display">\[L_2 = \frac{L_{líquido}}{R_{bruta}} = \frac{400.000}{2.000.000} = 20\%/\text{ano}\]</span></li>
+</ul>
+</div></div>
+<ul>
+<li class="fragment">Rentabilidade: é a razão do lucro sobre o investimento:</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Projeto 1: <span class="math display">\[r_1 = \frac{VPL_1}{I_1}= \frac{341.000}{1.000.000} = 34,10\%\]</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Projeto 2: <span class="math display">\[r_2 = \frac{VPL_2}{I_2}= \frac{341.000}{800.000} = 42,625\%\]</span></li>
+</ul>
+</div></div>
+<ul>
+<li class="fragment">O raciocínio é o seguinte: o VPL é o mesmo para ambos os projetos, porém no projeto 2 o investimento é menor (e retorna mais rápido)!</li>
+</ul>
+</section></section>
+<section>
+<section id="avaliação-de-aluguéis" class="title-slide slide level1 center">
+<h1>Avaliação de Aluguéis</h1>
+
+</section>
+<section id="método-da-renda" class="slide level2 smaller">
+<h2>Método da Renda</h2>
+<ul>
+<li class="fragment"><p>O método da Renda é um dos métodos reconhecidos pela <span class="citation" data-cites="NBR1465302">ABNT (<a href="#/referências" role="doc-biblioref" onclick="">2011</a>)</span> para “identificar o valor de um bem”.</p></li>
+<li class="fragment"><p>Em outras palavras, o método da Renda é um método para a estimação do valor de mercado de um bem imóvel.</p></li>
+<li class="fragment"><p>O método da renda consiste em utilizar a renda (aluguel) que um imóvel produz fins de determinar o seu valor de mercado.</p></li>
+<li class="fragment"><p>Antigamente alguns autores se referiam ao método da renda também quando utilizado para a determinação do valor justo do aluguel dos imóveis</p></li>
+<li class="fragment"><p>Na atualidade, para este segundo propósito, adotou-se o termo de <em>Método de Recuperação do Capital</em></p></li>
+<li class="fragment"><p>Na <span class="citation" data-cites="NBR1465302">ABNT (<a href="#/referências" role="doc-biblioref" onclick="">2011</a>, item 11.4.2)</span>, quando utilizado o método da recuperação do capital para determinação dos aluguéis:</p>
+<ul>
+<li class="fragment">Neste caso, o aluguel é determinado em função do valor do imóvel, podendo ser empregado em casos de imóveis isolados e atípicos, para os quais a utilização da comparação direta seja impraticável.</li>
+<li class="fragment">Sua utilização exige a determinação da taxa de remuneração e do valor do imóvel.</li>
+<li class="fragment">A taxa de remuneração deve ser objeto de pesquisa específica para cada caso, pois varia para cada tipo de imóvel, localização e, também, ao longo do tempo, dependendo da conjuntura econômica.</li>
+</ul></li>
+</ul>
+</section>
+<section id="método-da-remuneração-do-capital" class="slide level2 smaller">
+<h2>Método da Remuneração do Capital</h2>
+<ul>
+<li class="fragment">Segundo <span class="citation" data-cites="damato">D’Amato and Alonso (<a href="#/referências" role="doc-biblioref" onclick="">2019</a>)</span>, p.&nbsp;123:</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>Apesar de ser método de grande aplicação, alguns estudiosos já estão percebendo a inversão “causa-efeito” da premissa de que todo imóvel vale (efeito) pela sua capacidade de produzir renda (causa). Talvez o fato de se partir do “efeito” (valor do imóvel) para se obter a “causa” (renda) conduza a resultados distorcidos da realidade, a menos que nos cálculos se apliquem múltiplos fatores corretivos; para o terreno: localização, área, testada, profundidade, formato, sub ou superaproveitamento; para a construção: áreas privativa e total, grupamento, padrão, idade, estado de conservação, distribuição entre andares e dos ambientes (layout). […] Na realidade se verifica que são dois mercados diferentes, o de venda e o de locação, com tendência, comportamentos e público alvo também diversos.</p>
+</blockquote>
+<ul>
+<li class="fragment">Obs. Droubi:
+<ul>
+<li class="fragment">São dois mercados diferentes!</li>
+<li class="fragment">Mas eles se equilibram!</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="método-da-remuneração-do-capital-1" class="slide level2">
+<h2>Método da Remuneração do Capital</h2>
+<ul>
+<li class="fragment">É o inverso do método da renda <span class="citation" data-cites="damato">(<a href="#/referências" role="doc-biblioref" onclick="">D’Amato and Alonso 2019, 95</a>)</span>!</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>“quando usado inversamente, para fixação de aluguéis, o método denominar-se-á da remuneração dos capitais”</p>
+</blockquote>
+<ul>
+<li class="fragment">A taxa de remuneração deve ser determinada mediante pesquisa, conforme item 11.4.2 da NBR 14.653-2 <span class="citation" data-cites="NBR1465302">(<a href="#/referências" role="doc-biblioref" onclick="">2011</a>)</span>:</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>A taxa de remuneração deve ser objeto de pesquisa específica para cada caso, pois varia para cada tipo de imóvel, localização e, também ao longo do tempo, dependendo da conjuntura econômica.</p>
+</blockquote>
+</div>
+</section>
+<section id="método-da-remuneração-do-capital-2" class="slide level2 smaller">
+<h2>Método da Remuneração do Capital</h2>
 <ul>
 <li class="fragment"><p>Deve-se levar em conta:</p>
 <ul>
@@ -578,8 +1156,8 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 </ul></li>
 </ul>
 </section>
-<section id="método-do-aluguel-líquido" class="slide level2">
-<h2>Método do aluguel líquido</h2>
+<section id="método-da-renda-com-aluguel-líquido" class="slide level2">
+<h2>Método da Renda com aluguel líquido</h2>
 <ul>
 <li class="fragment">Segundo <span class="citation" data-cites="Malpezzi2002TheRO">Malpezzi and Wachter (<a href="#/referências" role="doc-biblioref" onclick="">2002</a>)</span>:
 <ul>
@@ -588,25 +1166,23 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 <li class="fragment">Obs.: A valorização (<span class="math inline">\(g\)</span>) pode ser levada em conta subtraindo-a da taxa de desconto <span class="citation" data-cites="Malpezzi2002TheRO">(<a href="#/referências" role="doc-biblioref" onclick="">Malpezzi and Wachter 2002</a>)</span>:
 <ul>
 <li class="fragment"><span class="math display">\[V_{imovel} = \frac{R_l}{i-g}\]</span></li>
-<li class="fragment"><span class="math inline">\(i-g\)</span> é chamada de taxa de capitalização, ou <span class="math inline">\(c\)</span> (cap rate)</li>
+<li class="fragment"><span class="math inline">\(i-g\)</span> é chamada de taxa de capitalização, ou <span class="math inline">\(c\)</span> (<em>cap rate</em>)</li>
 <li class="fragment"><span class="math display">\[V_{imovel} = \frac{R_l}{c}\]</span></li>
 </ul></li>
 </ul>
 </section>
-<section id="método-do-aluguel-líquido-1" class="slide level2 smaller">
-<h2>Método do aluguel líquido</h2>
+<section id="método-da-renda-com-aluguel-líquido-1" class="slide level2 smaller">
+<h2>Método da Renda com aluguel líquido</h2>
 <ul>
 <li class="fragment"><p>Segundo <span class="citation" data-cites="damato">D’Amato and Alonso (<a href="#/referências" role="doc-biblioref" onclick="">2019</a>)</span>, p.&nbsp;100, deve-se deduzir, em média, 30% do aluguel bruto!</p>
 <ul>
-<li class="fragment"><span class="math inline">\(V_{imóvel} = \frac{Al}{i} = \frac{12.0,7.3000}{6\%}=\text{ R\$ } 420.000,00\)</span></li>
+<li class="fragment"><span class="math display">\[V_{imóvel} = \frac{Al}{i} = \frac{12.0,7.3000}{6\%}=\text{ R\$ } 420.000,00\]</span></li>
 </ul></li>
 <li class="fragment"><p>Estimando-se uma taxa de valorização de 2% a.a.:</p>
 <ul>
-<li class="fragment"><span class="math inline">\(V_{imóvel} = \frac{Al}{i} = \frac{12.0,7.3000}{6\%-2\%}=\text{ R\$ } 630.000,00\)</span></li>
+<li class="fragment"><span class="math display">\[V_{imóvel} = \frac{Al}{i} = \frac{12.0,7.3000}{6\%-2\%}=\text{ R\$ } 630.000,00\]</span></li>
 </ul></li>
-<li class="fragment"><p>Valor Presente Líquido: <span class="math display">\[VPL = -I + \sum_{t=1}^T \frac{R_t - C_t}{(1+i)^t}\]</span></p></li>
-<li class="fragment"><p>O VPL também pode ser escrito em função do Fator de Recuperação do Capital (FRC) <span class="math display">\[VPL = -I + \frac{R}{FRC(i,T)};\qquad FRC = \frac{i.(1+i)^T}{(1+i)^T-1}\]</span></p></li>
-<li class="fragment"><p>Para períodos muito longos, <span class="math inline">\(FRC = i\)</span>, como já exposto!</p></li>
+<li class="fragment"><p>Pequenos ajustes fazem grande diferença no VP!</p></li>
 </ul>
 </section>
 <section id="o-investimento-em-imóveis" class="slide level2 smaller">
@@ -615,15 +1191,16 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 <li class="fragment">Exemplo:
 <ul>
 <li class="fragment">Dado que um apartamento está anunciado em R$ 400.000,00</li>
-<li class="fragment">Que a sua TMA é igual 10% a.a.</li>
+<li class="fragment">Que a sua (investidor) TMA é igual 10% a.a.</li>
 <li class="fragment">Que o aluguel do imóvel é R$ 3.000,00/mês</li>
 <li class="fragment">Que a expectativa é que o aluguel se reajuste a uma taxa de 1,5% a.a.</li>
-<li class="fragment">Que os custos são da ordem de 30% do valor do aluguel</li>
+<li class="fragment">Que os custos (inclusive taxa de vacância) são da ordem de 30% do valor do aluguel</li>
+<li class="fragment">Que você (investidor) considera um prazo de 30 anos para amortizar o investimento</li>
 <li class="fragment">Quanto você pode pagar pelo apartamento?</li>
 </ul></li>
 <li class="fragment">Solução:
 <ul>
-<li class="fragment"><span class="math display">\[FCA = \frac{8,5\%.(1+8,5\%)^{30}}{(1+8,5\%)^{30}-1} = 9,305\%\]</span></li>
+<li class="fragment"><span class="math display">\[FRC(8,5\%, 30) = \frac{8,5\%.(1+8,5\%)^{30}}{(1+8,5\%)^{30}-1} = 0,09305\]</span></li>
 <li class="fragment"><span class="math display">\[VPL = -400.000 + \frac{12.(3000-900)}{9,305\%}\]</span></li>
 <li class="fragment"><span class="math display">\[VPL = -400.000 + 270.822,10 = -129.177,90\]</span></li>
 <li class="fragment">R.: R$ 270.000,00</li>
@@ -642,11 +1219,11 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 <li class="fragment">O aluguel da casa é R$ 3.000,00 mensais</li>
 <li class="fragment">A sua TMA é de 10% a.a.</li>
 <li class="fragment">Você compra a casa?</li>
-<li class="fragment">Considere que não há valor residual e despreze os custos de manutenção da casa!</li>
+<li class="fragment">Considere que não há valor residual e despreze os custos de manutenção da casa, inflação, etc.!</li>
 </ul></li>
 <li class="fragment">Solução:
 <ul>
-<li class="fragment"><span class="math display">\[FCA = \frac{10\%.(1+10\%)^{30}}{(1+10\%)^{30}-1} = 10,61\%\]</span></li>
+<li class="fragment"><span class="math display">\[FRC(10\%, 30) = \frac{10\%.(1+10\%)^{30}}{(1+10\%)^{30}-1} = 10,61\%\]</span></li>
 <li class="fragment"><span class="math display">\[VPL = -100.000 + \frac{12.(3000-2000)}{10,61\%}\]</span></li>
 <li class="fragment"><span class="math display">\[VPL = -100.000 + \frac{12.000}{10,61\%} = -100.000 + 113.100,80 = 13.100,80\]</span></li>
 </ul></li>
@@ -661,21 +1238,34 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 <li class="fragment">Um terreno está anunciado por R$ 100.000,00</li>
 <li class="fragment">Você quer construir uma casa com orçamento de R$ 400.000,00</li>
 <li class="fragment">Você pode fazer ATC, mediante entrada de 20% (R$ 100.000)</li>
-<li class="fragment">Você pagará ao banco uma parcela de R$ 4.000,00 mensais por 30 anos</li>
-<li class="fragment">O aluguel de uma casa similar é R$ 3.000,00 mensais</li>
+<li class="fragment">Você pagará ao banco inicialmente uma parcela de R$ 5.000,00 mensais</li>
+<li class="fragment">Porém, ao longo de 30 anos esta parcela será reduzida a uma taxa de 2,5% a.a.</li>
+<li class="fragment">O aluguel de uma casa similar é R$ 4.000,00 mensais</li>
+<li class="fragment">Porém estima-se que este aumentará a uma taxa de 2,5% a.a.</li>
 <li class="fragment">A sua TMA é de 10% a.a.</li>
-<li class="fragment">Você espera que o terreno tenha valorização real de 1% a.a.</li>
+<li class="fragment">Você estima uma valor residual, ao final de 30 anos, de 20% para o imóvel.</li>
 <li class="fragment">Você compra a casa?</li>
-<li class="fragment">Considere que não há valor residual e despreze os custos de manutenção da casa!</li>
-</ul></li>
-<li class="fragment">Solução:
-<ul>
-<li class="fragment"><span class="math display">\[FCA = \frac{10\%.(1+10\%)^{30}}{(1+10\%)^{30}-1} = 10,61\%\]</span></li>
-<li class="fragment"><span class="math display">\[VPL = \frac{100.000.(1+1\%)^{30}}{10,61\%} + \frac{12.(3000-4000)}{10,61\%} = 134.784,90 + \frac{-12.000}{10,61\%} = 21.684,10\]</span></li>
+<li class="fragment">Despreze os custos de manutenção e outras taxas!</li>
 </ul></li>
 </ul>
 </section>
-<section id="o-investimento-em-imóveis-3" class="slide level2">
+<section id="o-investimento-em-imóveis-3" class="slide level2 smaller">
+<h2>O investimento em imóveis</h2>
+<h3 id="a-casa-própria-2-1">A casa própria (2)</h3>
+<ul>
+<li class="fragment">Solução:
+<ul>
+<li class="fragment"><span class="math display">\[FRC_R = FRC(10\% - 2,5\%, 30) = \frac{7,5\%.(1+7,5\%)^{30}}{(1+7,5\%)^{30}-1} = = 0,08467 = 8,47\%\]</span></li>
+<li class="fragment"><span class="math display">\[FRC_C = FRC(10\% + 2,5\%, 30) = \frac{12,5\%.(1+12,5\%)^{30}}{(1+12,5\%)^{30}-1} = 0,1288 = 12,88\%\]</span></li>
+<li class="fragment"><span class="math display">\[FCA(10\%, 30) = \frac{1}{(1+10\%)^{30}} = 0,0573 = 5,73\%\]</span></li>
+<li class="fragment"><span class="math display">\[VPL = - 100.000 +  \frac{12.(4.000)}{8,47\%} + \frac{12.(-5.000)}{12,88\%}  + 20\%.500.000.5,73\%\]</span></li>
+<li class="fragment"><span class="math display">\[VPL = 100.000,00 + \frac{48.000}{8,47\%} + \frac{-60.000}{12,88\%} + 100.000.5,73\%\]</span></li>
+<li class="fragment"><span class="math display">\[VPL = -100.000 + 566.706 - 465.838,50 + 5.730\]</span></li>
+<li class="fragment"><span class="math display">\[VPL \approx 6.600,00\]</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="o-investimento-em-imóveis-4" class="slide level2">
 <h2>O investimento em imóveis</h2>
 <ul>
 <li class="fragment">Deve-se levar em conta que cada pequeno ajuste, seja na taxa, seja na renda esperada, leva a grandes diferenças no valor do imóvel!
@@ -752,13 +1342,13 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 <li class="fragment">Mercado imobiliário não é um mercado perfeito!</li>
 </ul></li>
 </ul>
-</section>
+</section></section>
 <section>
-<section id="métodos" class="title-slide slide level1 center">
-<h1>Métodos</h1>
+<section id="aplicações" class="title-slide slide level1 center">
+<h1>Aplicações</h1>
 
 </section>
-<section id="método-da-renda" class="slide level2">
+<section id="método-da-renda-1" class="slide level2">
 <h2>Método da Renda</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -845,8 +1435,8 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 </ul></li>
 </ul>
 </section>
-<section id="método-da-remuneração-do-capital-2" class="slide level2 smaller">
-<h2>Método da Remuneração do Capital (2)</h2>
+<section id="método-da-renda-2" class="slide level2 smaller">
+<h2>Método da Renda</h2>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true">
@@ -941,49 +1531,11 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 </div>
 </div>
 <ul>
-<li class="fragment">Rentabilidade média: 0,58% a.m.</li>
-<li class="fragment">Valor da Vacância: 7%*600 = R$ 42,00 /mês</li>
-<li class="fragment">Despesas: R$ 125,00/mês</li>
-<li class="fragment">Renda líquida: 600-42-125 = R$ 433,00 /mês</li>
-<li class="fragment">Valor do imóvel: <span class="math inline">\(V_{imovel} = \frac{433}{0,58\%}=\text{R\$ }74.655,17\)</span></li>
+<li class="fragment"><p>Rentabilidade média: 0,58% a.m.</p></li>
+<li class="fragment"><p>Valor da Vacância: 7%*600 = R$ 42,00 /mês</p></li>
+<li class="fragment"><p>Despesas: R$ 125,00/mês</p></li>
+<li class="fragment"><p>Valor do imóvel: <span class="math display">\[V_{imovel} = \frac{R - C}{i} = \frac{600-42-125}{0,58\%}=\text{R\$ }74.655,17\]</span></p></li>
 </ul>
-</section>
-<section id="método-da-remuneração-do-capital" class="slide level2 smaller">
-<h2>Método da Remuneração do Capital</h2>
-<ul>
-<li class="fragment">Segundo <span class="citation" data-cites="damato">D’Amato and Alonso (<a href="#/referências" role="doc-biblioref" onclick="">2019</a>)</span>, p.&nbsp;123:</li>
-</ul>
-<div class="fragment">
-<blockquote>
-<p>Apesar de ser método de grande aplicação, alguns estudiosos já estão percebendo a inversão “causa-efeito” da premissa de que todo imóvel vale (efeito) pela sua capacidade de produzir renda (causa). Talvez o fato de se partir do “efeito” (valor do imóvel) para se obter a “causa” (renda) conduza a resultados distorcidos da realidade, a menos que nos cálculos se apliquem múltiplos fatores corretivos; para o terreno: localização, área, testada, profundidade, formato, sub ou superaproveitamento; para a construção: áreas privativa e total, grupamento, padrão, idade, estado de conservação, distribuição entre andares e dos ambientes (layout). […] Na realidade se verifica que são dois mercados diferentes, o de venda e o de locação, com tendência, comportamentos e público alvo também diversos.</p>
-</blockquote>
-<ul>
-<li class="fragment">Obs. Droubi:
-<ul>
-<li class="fragment">São dois mercados diferentes!</li>
-<li class="fragment">Mas eles se equilibram!</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="método-da-remuneração-do-capital-1" class="slide level2">
-<h2>Método da Remuneração do Capital</h2>
-<ul>
-<li class="fragment">É o inverso do método da renda <span class="citation" data-cites="damato">(<a href="#/referências" role="doc-biblioref" onclick="">D’Amato and Alonso 2019, 95</a>)</span>!</li>
-</ul>
-<div class="fragment">
-<blockquote>
-<p>“quando usado inversamente, para fixação de aluguéis, o método denominar-se-á da remuneração dos capitais”</p>
-</blockquote>
-<ul>
-<li class="fragment">A taxa de remuneração deve ser determinada mediante pesquisa, conforme item 11.4.2 da NBR 14.653-2 <span class="citation" data-cites="NBR1465302">(<a href="#/referências" role="doc-biblioref" onclick="">2011</a>)</span>:</li>
-</ul>
-</div>
-<div class="fragment">
-<blockquote>
-<p>A taxa de remuneração deve ser objeto de pesquisa específica para cada caso, pois varia para cada tipo de imóvel, localização e, também ao longo do tempo, dependendo da conjuntura econômica.</p>
-</blockquote>
-</div>
 </section>
 <section id="método-da-remuneração-do-capital-3" class="slide level2 smaller">
 <h2>Método da Remuneração do Capital</h2>
@@ -1207,12 +1759,8 @@ Figure&nbsp;1: Um Fluxo de Caixa Simples
 </div>
 </div>
 </section>
-<section id="método-da-remuneração-do-capital-5" class="slide level2 smaller">
+<section id="método-da-remuneração-do-capital-5" class="slide level2">
 <h2>Método da Remuneração do Capital</h2>
-<ul>
-<li class="fragment">Determinação da taxa média:</li>
-</ul>
-<div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">t.test</span>(df<span class="sc">$</span>TaxaAnual, <span class="at">conf.level =</span> .<span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1230,24 +1778,17 @@ mean of x
 </div>
 </div>
 <ul>
-<li class="fragment"><p>Taxa média: 6,63% [6,23%; 7,03%] a.a.</p></li>
-<li class="fragment"><p>Imagine-se que agora pretenda-se avaliar um imóvel de valor de venda igual a R$ 500.000,00</p></li>
-<li class="fragment"><p>Adotando-se a taxa de remuneração do capital estimada (6,63%a.a.[6,23; 7,03]), tem-se:</p>
+<li class="fragment">Para avaliar um imóvel com VM de R$ 500.000,00:
 <ul>
 <li class="fragment"><span class="math inline">\(Al =500.000.6,63\%/12 \approx\)</span> R$ 2.750,00/mês</li>
 <li class="fragment"><span class="math inline">\(Al =500.000.6,23\%/12 \approx\)</span> R$ 2.600,00/mês</li>
 <li class="fragment"><span class="math inline">\(Al =500.000.7,03\%/12 \approx\)</span> R$ 2.900,00/mês</li>
 </ul></li>
-<li class="fragment"><p>O valor locativo estimado, portanto, é de R$ 2.750,00 [2.600,00; 2.900,00]</p></li>
+<li class="fragment">Valor locativo estimado: R$ 2.750,00 [2.600,00; 2.900,00]</li>
 </ul>
-</div>
 </section>
-<section id="cuidado-1" class="slide level2 smaller">
-<h2>CUIDADO!</h2>
-<ul>
-<li class="fragment">Em uma perícia, faça isto:</li>
-</ul>
-<div class="fragment">
+<section id="em-uma-perícia-faça-isto" class="slide level2">
+<h2>Em uma perícia, faça isto:</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">t.test</span>(df<span class="sc">$</span>TaxaMensal, <span class="at">conf.level =</span> .<span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1265,15 +1806,14 @@ mean of x
 </div>
 </div>
 <ul>
-<li class="fragment">Adotando-se a taxa de remuneração do capital estimada (0,54%a.a.[0,50; 0,57]), tem-se:
+<li class="fragment">Para avaliar um imóvel com VM de R$ 500.000,00:
 <ul>
 <li class="fragment"><span class="math inline">\(Al =500.000.0,54\% \approx\)</span> R$ 2.700,00/mês</li>
 <li class="fragment"><span class="math inline">\(Al =500.000.0,50\% \approx\)</span> R$ 2.500,00/mês</li>
 <li class="fragment"><span class="math inline">\(Al =500.000.0,57\% \approx\)</span> R$ 2.850,00/mês</li>
 </ul></li>
-<li class="fragment">O valor locativo estimado, portanto, é de R$ 2.700,00 [2.500,00; 2.800,00]</li>
+<li class="fragment">Valor locativo: R$ 2.700,00 [2.500,00; 2.800,00]</li>
 </ul>
-</div>
 </section>
 <section id="método-da-remuneração-do-capital-6" class="slide level2">
 <h2>Método da Remuneração do Capital</h2>
@@ -1285,7 +1825,7 @@ mean of x
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Alugueis_01_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:70.0%"></p>
+<p><img data-src="Alugueis_01_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1305,14 +1845,14 @@ mean of x
 <section id="método-da-remuneração-do-capital-7" class="slide level2">
 <h2>Método da Remuneração do Capital</h2>
 <ul>
-<li class="fragment">Mesmos dados de <span class="citation" data-cites="damato">D’Amato and Alonso (<a href="#/referências" role="doc-biblioref" onclick="">2019</a>)</span>, p.&nbsp;94:</li>
+<li class="fragment">Mesmos dados, passando pela origem:</li>
 </ul>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Alugueis_01_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:70.0%"></p>
+<p><img data-src="Alugueis_01_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1329,6 +1869,30 @@ mean of x
 </div>
 </div>
 </section>
+<section id="para-entender" class="slide level2">
+<h2>Para entender</h2>
+
+<img data-src="Alugueis_01_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<section id="para-entender-1" class="slide level2">
+<h2>Para entender</h2>
+<h3 id="retirando-um-outlier">Retirando um outlier</h3>
+
+<img data-src="Alugueis_01_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<section id="para-entender-2" class="slide level2">
+<h2>Para entender</h2>
+
+<img data-src="Alugueis_01_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"><ul>
+<li class="fragment">Importante observar: este mercado é influenciado totalmente pelas taxas de juros. É um mercado de bens de investimento, e não um mercado de consumo!
+<ul>
+<li class="fragment">Mas os imóveis não são apenas bens de investimento!</li>
+</ul></li>
+</ul>
+</section>
+<section id="para-entender-3" class="slide level2">
+<h2>Para entender</h2>
+<h3 id="economia-urbana">Economia Urbana</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/BSMJk8gSyrs?si=MUBWrkpX2oyZbbbA?start=0" width="600" height="450" title="A demanda por cidades" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</section>
 <section id="referências" class="slide level2 smaller scrollable">
 <h2>Referências</h2>
 <div class="quarto-auto-generated-content">
@@ -1342,6 +1906,12 @@ ABNT. 2011. <em><span>NBR</span> 14653-2: Avaliacao de Bens – Parte 2: Imoveis
 </div>
 <div id="ref-damato" class="csl-entry" role="listitem">
 D’Amato, Mônica, and Nelson Roberto Pereira Alonso. 2019. <em>Avaliação de Aluguéis</em>. Edited by Leud. 4th ed. São Paulo.
+</div>
+<div id="ref-granelle" class="csl-entry" role="listitem">
+GRANELLE, J-J. 1998. <em>Économie Immobilière. Analyses Et Applications</em>. Paris: Economica.
+</div>
+<div id="ref-lacerda2020" class="csl-entry" role="listitem">
+Lacerda, Norma, and Pedro Abramo. 2020. <span>“O Mercado de Aluguel de Imóveis Comerciais e de Serviços Em Centros Históricos Brasileiros: Implicações Da Conservação Inovadora e Da Destruição Aniquiladora Nos Preços Dos Bens Patrimoniais.”</span> <em>Revista Brasileira de Estudos Urbanos e Regionais</em> 22 (E202027pt): 1–27. https://doi.org/<a href="https://doi.org/10.22296/2317-1529.rbeur.202027pt">https://doi.org/10.22296/2317-1529.rbeur.202027pt</a>.
 </div>
 <div id="ref-Malpezzi2002TheRO" class="csl-entry" role="listitem">
 Malpezzi, Stephen, and Susan M. Wachter. 2002. <span>“The Role of Speculation in Real Estate Cycles.”</span> https://doi.org/<a href="https://dx.doi.org/10.2139/ssrn.2585241">https://dx.doi.org/10.2139/ssrn.2585241</a>.

@@ -1,5 +1,5 @@
 ---
-title: "Availação de Alugueis"
+title: "Avaliação de Alugueis"
 subtitle: "Parte 02"
 author: "Luiz Fernando Palin Droubi"
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
@@ -179,7 +179,7 @@ prefer-html: true
         -   O que seria o $CA_{básico}$?
         -   $CA_{básico} = \frac{2.100}{8.064}=0,26$
         -   Aplicou-se $C_{Ap} = 1 – [((E – e)/E).(0,20 + (0,80.(V – v)/V))]$
-        -   E chegou-se a: $C_{Ap} =  = 1 – [((8.064 – 2.100)/8.064) (0,20 + (0,80.(60-22)/60))] = 1 – (0,7396 . 0,7067) = 0,477$
+        -   E chegou-se a: $C_{Ap} = 1 – [((8.064 – 2.100)/8.064) (0,20 + (0,80.(60-22)/60))] = 1 – (0,7396 . 0,7067) = 0,477$
         -   O coeficiente de aproveitamento aumentou após a consideração da idade!!!
         -   Pode-se perceber que o erro está no componente básico da fórmula!
         -   Correto seria: $C_{Ap} = 1 – [ (e/E) . ( 0,20 + ( 0,80 . (V – v)/V))] = 1 – (0,26 . 0,7067) = 0,184$
@@ -210,158 +210,319 @@ prefer-html: true
     -   $C_{Ap} = 1 – [ (e/E) . (0,20 + (0,80.(V – v)/V)).(p/P)] = 1 – (0,26.0,7067.0.763) = 0,184$
 -   Não faz sentido, ao meu ver, que a variável padrão seja considerada na forma aditiva, enquanto as outras são consideradas na forma multiplicativa.
 
-# Método Comparativo
+# Hipótese de Harper
 
-## O Método Comparativo {.smaller}
+## Hipótese de Harper
 
--   O Método Comparativo Direto de Dados de Mercado (MCDDM) tenta contornar a necessidade de estabelecimento de uma taxa de remuneração do capital, através da pesquisa direta de dados de mercado de aluguéis de imóveis com diferentes características
+- A hipótese de Harper visa corrigir a área da loja para diferentes profundidades
 
-. . .
+- A hipótese de Harper considera que o preço médio do metro quadrado varia de
+forma parabólica com relação à profundidade padrão para o local [@damato, p. 168]
+
+- A hipótese implica que:
+  - A primeira quarta parte da loja (da frente à via de acesso), corresponde à
+  50% do valor da loja;
+  - A segunda quarta parte equivale a 21%;
+  - A terceira quarta parte equivale a 16%;
+  - E a quarta quarta parte equivale a 13%.
+  
+- A hipótese de Harper não corrige o efeito de Frente da loja
+  
+## Hipótese de Harper
+
+
+
+
+
+::::: columns
+::: {.column width="50%"}
+  
+$$V_l = V_u(\sqrt{aSf_p}+A_p)$$ 
+
+
+:::
+
+::: {.column width="50%"}
+
+
+- $a$: frente da loja 
+- $S$: área da loja 
+- $f_p$: fundo padrão (de 15 a 20m) 
+- $A_P$: demais áreas
+
+
+:::
+
+::::
+
+. . . 
+
 
 ```{r}
-# Comparacao do tratamento por fatores e tratamento por regressao linear
-
-# Carregamento dos pacotes necessarios
+#| out-width: "80%"
 library(tibble)
-library(effects)
-library(broom)
+df <- tribble(
+  ~Id, ~Frente, ~Prof, ~Vl,
+    1,       8,     8, 450, 
+    2,       8,    10, 450,
+    3,       8,    12, 500,
+    4,       8,    14, 500,
+    5,       8,    16, 500,
+    6,       8,    18, 550,
+    7,       8,    20, 600,
+    8,       8,    22, 700,
+    9,       8,    24, 750,
+   10,       8,    26, 750,
+   11,       8,    28, 785,
+   12,       8,    30, 850
+)
+FundoPad <- 20
+df <- within(df,{
+  Area <- Frente*Prof
+  VU <- Vl/Area
+  Harper <- Area/sqrt(Frente*Area*FundoPad)
+  VUhom <- VU*Harper
+})
+library(ggplot2)
+ggplot(df, aes(x = Prof, y = 1/Harper)) +
+  geom_line() +
+  geom_point() +
+  geom_hline(yintercept = 1, lty = "dotted") +
+  geom_vline(xintercept = 20, lty = "dotted") +
+  labs(title = "Hipótese de Harper para lojas",
+       x = "Profundidade (m)", y = "Valor Unitário (R$/m2)",
+       caption = "Com fundo padrão igual a 20m. VU para loja-padrão igual R$ 1,0/m2")
+```
+  
+## Hipótese de Harper {.smaller}
+
+### Exemplo [Adaptado de @damato, p. 168]:
+
+::::: columns
+::: {.column width="50%"}
+
+- Seja a amostra:
+
+```{r}
+library(knitr)
+kable(df[, c(1, 2, 3, 4)], format = "html",
+      format.args = list(big.mark = ".", decimal.mark = ","),
+      digits = 2
+      #, caption = "Hipótese de Harper aplicada a lojas"
+      ) 
+```
+
+:::
+
+::: {.column width="50%"}
+
+- Avaliar o aluguel de uma loja com 8x15$m^2$
+
+- $$VU_{hom} = \frac{VU.S}{\sqrt{a.S.f_p.}}$$
+
+- $$VU_{hom} = \frac{VU.S}{\sqrt{8.S.20}}$$
+
+:::
+
+::::
+
+## Hipótese de Harper {.smaller}
+
+### Solução:
+
+::::: columns
+::: {.column width="60%"}
+
+- Homogeneização:
+
+```{r}
 library(appraiseR)
 library(knitr)
-
-# Insercao manual dos dados
-# Dados de Alonso, Foz do Iguacu (2019, p. 48)
-
-df <- tribble(
-  ~id, ~Area,  ~Aluguel, ~Condo, ~Padrao, ~PadraoProxy, ~Idade,
-    1,    90,      2755,    285,  "Alto",        2.160,     25,
-    2,    87,      2310,    285, "Médio",        1.926,     25,
-    3,    90,      2215,    230,  "Alto",        2.160,     30,
-    4,    95,      1830,    230, "Baixo",        1.692,     30,
-    5,    90,      2000,    230,  "Alto",        2.160,     30,
-    6,   105,      1830,    290, "Médio",        1.926,     25,
-    7,   100,      1640,    250, "Baixo",        1.692,     30,
-    8, 93.69,        NA,    250,  "Alto",        1.926,     25,
-)
-kable(df)
+kable(df[, c(1, 2, 3, 4, 8, 7, 6, 5)], format = "html",
+      format.args = list(big.mark = ".", decimal.mark = ","),
+      digits = 2
+      #, caption = "Hipótese de Harper aplicada a lojas"
+      ) 
 ```
 
-## O Método Comparativo {.smaller}
+:::
 
-## Análise Exploratória
+::: {.column width="40%"}
 
-```{r}
-# Computo do Valor Unitario dos Alugueis
+- $VU_{hom} =$`r Reais(mean(df$VUhom))`$/m^2$
 
-df <- within(df, {
-  PU <- Aluguel/Area
-  PU2 <- (Aluguel + Condo)/Area
-  Deprec <- (1-2.5/100)^Idade
-  PadraoDeprec <- PadraoProxy*Deprec
-})
-```
+- Avaliar o aluguel de uma loja com $8\times17,5 = 140m^2$:
 
-```{r}
-plotdf(PU ~ Area + Padrao, data = df, labels = T)
-```
+- Homogeneização do avaliando: $S_{hom} = \sqrt{8.140.20} \approx 150,0 m^2$
 
-## O Método Comparativo {.smaller}
+- Valor Locatício: $Vl = S_{hom}.VU_{hom} = 150\times4,01$
 
-## Análise Exploratória
+- Valor Locatício: $Vl \approx \text{R\$ }600,00$
 
-```{r}
-plotdf(PU ~ Area + PadraoDeprec, data = df, labels = T)
-```
+:::
 
-## O Método Comparativo {.smaller}
+::::
 
-## Análise Exploratória
+## Hipótese de Harper {.smaller}
 
-```{r}
-plotdf(log(PU) ~ log(Area) + log(PadraoDeprec), data = df, labels = T)
-```
+## Exemplo 2:
 
-## O Método Comparativo {.smaller}
+- Com os dados do exemplo anterior, calcular o aluguel de uma loja com 8x22,5m2,
+contando com mais 50$m^2$ de sobreloja (mezzanino)
 
-## Análise de regressão
+- Solução:
+  - $S_{hom} = \sqrt{8.180.20} + 50/2$
+  - $S_{hom} = 169,70 + 25 = 194,70m^2$
+  - $Vl = S_{hom}.VU_{hom} = 194,70\times4,01$
+  - $Vl \approx \text{R\$ }780,75$ 
 
-```{r}
-# 1.2 Metodo Comparativo, tratamento por regressao linear
+# Cota parte
 
-# Ajuste do modelo
+## Cota parte
 
-fit <- lm(log(PU) ~ log(Area) + log(PadraoDeprec), data = df)
-fit |>
-  tidy() |>
-  kable()
-```
+- Em muitos casos a avaliação desejada é de uma unidade do edifício e não do seu
+todo
+- Assim surge o problema, nos casos de aplicação do método evolutivo, de saber
+qual cota-parte do terreno cabe àquela unidade que se deseja avaliar.
+- Matematicamente:
+  - $CP = \frac{A_{hu}}{A_{ht}}; \qquad CT_{un} = CT.CP$
+    - CP: Cota-Parte
+    - CT: Capital Terreno (Total)
+    - CTun: Capital Terreno correspondente à unidade em análise
+    - Ahu: área homogeneizada da unidade
+    - Aht: área homogeneizada total
 
-## O Método Comparativo {.smaller}
+## Exemplo
 
-## Análise de regressão
+- Cálcular a Cota Parte do Térreo num edifício composto de um terreno de 400m2,
+com área construída de 200m2 no térreo e superiores de 400m2.
+- Considerar pesos 3:1
 
-```{r}
-# Analise dos residuos
-# plot(fit)
+- Solução:
+  - $CP = \frac{A_{hu}}{A_{ht}} = \frac{A_{Terreo}.p_{Terreo}}{A_{Terreo}.p_{Terreo} + A_{Superiores}.p_{Superiores}}$
+  - $CP = \frac{200.3}{200.3+400.1} = \frac{600}{1.000} = 60\%$
+  
+## Cálculo do aluguel de uma cota parte
 
-# Graficos do Modelo
-#
-plot(predictorEffects(fit, residuals = T), id = T,
-     axes=list(grid=TRUE, x=list(rotate=45)),
-     partial.residuals=list(smooth=TRUE, span=1.25, lty = "dashed"))
-```
+- Para o cômputo do aluguel de uma única unidade, pode-se calcular a Cota Parte
+(CP) da unidade e aplicar ao valor total do Capital Terreno.
+- No entanto, se o objetivo for calcular apenas o valor do aluguel da unidade,
+pode-se calcular o Capital terreno referente à unidade (CTun) diretamente 
+através da fórmula (Candeloro, p.63):
 
-## O Método Comparativo {.smaller}
+. . . 
 
-## Previsão de Valores
+$$CT_{un} = q_t.\frac{A_{hu}}{TO.p_{Térreo} + (CA_{básico}-TO).p_{Superiores}}$$
 
-```{r}
-# Computo do valor do aluguel atraves do modelo
+- qt: Unitário do Terreno
+- TO: Taxa de Ocupação do Terreno
+- CAbásico: Coeficiente de Aproveitamento Básico do Terreno
 
-p <- predict(fit, newdata = list(Area = 93.69, PadraoDeprec = 1.926*(1-2.5/100)^25),
-             interval = "confidence", level = .80)
-exp(p) # 22,97 [21,74; 24,27]
+## Exemplo
 
-# Obs.: Praticamente o mesmo valor obtido no tratamento por fatores.
-```
+- Loja, com 200m2 no térreo e 100m2 no superior. O valor unitário do terreno é 
+de qt = 1.000,00 R$/m2, porém sua área total é desconhecida, assim como as áreas
+construídas das outras áreas. Considerar TO = 0,8, CA = 3,5 e pesos 5:1
 
-## O Método Comparativo {.smaller}
+- Solução:
+  - $CT_{un} = q_t.\frac{A_{hu}}{TO.p_{Térreo} + (CA_{básico}-TO).p_{Superiores}}$
+  - $CT_{un} = 1.000,00.\frac{200.5+100.1}{0,8.5,0 + (3,5-0,8).1,0}$
+  - $CT_{un} = 164.179,10$
 
-## Alternativa (não-recomendado!)
+## Exercício {.smaller}
 
-```{r}
-df <- within(df, PVendaProxy <- Area*PadraoProxy*Deprec)
-library(ggpmisc)
-ggplot(df, aes(x = PVendaProxy, y = PU)) +
-  geom_point() +
-  stat_poly_line(formula = y ~ x - 1) +
-  stat_poly_eq(use_label(c("eq", "R2")), size = 6, formula = y ~ x - 1) +
-  geom_segment(x = 93.69*1.926*(1-2.5/100)^25, xend = 93.69*1.926*(1-2.5/100)^25,
-               y=0, yend = 23.57, color = "red", size=1.5) +
-  geom_segment(x = 0, xend = 93.69*1.926*(1-2.5/100)^25, y = 23.57, yend = 23.57, 
-               color = "red", size=1.5) +
-  theme_grey(base_size = 20)
-```
+- Imaginem que o escritório de Avaliações e Perícias em que você trabalha foi 
+contratado por um potencial comprador de um edifício localizado na  região 
+central da cidade para efetuar a avaliação do aluguel de diversas lojas e 
+escritórios neste edifício;
+- O edifício é constituído de Térreo + 2 andares, cada um com 150m2;
+- O proprietário pretende ocupar com seu escritório pouco mais da metade da área 
+do 2º pavimento (90 m2) e locar o restante;
+- O proprietário informou que algumas pessoas já manifestaram interesse em locar 
+espaços no seu prédio
+  - 1 interessado em instalar uma loja (térreo) com 90 m2;
+  - 1 interessado em uma loja (térreo) com 60 m2;
+  - 1 interessado em uma laje corporativa de 150 m2 para sua empresa (1º pavimento);
+  - 1 interessado na metade restante do 2º pavimento (60 m2);
+- O potencial proprietário ainda deseja saber qual o valor do aluguel da área que ele 
+próprio irá ocupar no 2º pavimento (90 m2), para fins de calcular o VPL da 
+compra do edifício (aluguel implícito).
 
-## O Método Comparativo {.smaller}
+## Exercício
 
-## Alternativa
+- O diretor de Avaliações resolveu pulverizar o trabalho entre diversos 
+avaliadores;
+- No entanto, para que o resultado final seja um trabalho uniforme, o Diretor 
+estabeleu os critérios que cada avaliador deverá considerar nas suas avaliações. 
+- Os critérios estabelecidos pelo Diretor, assim como os dados por ele 
+disponibilizados para os avaliadores encontram-se nos próximos slides.
+- Para uma melhor apresentação do trabalho, o Diretor solicitou que fosse 
+utilizado o método da Cota Parte, evitando assim que o laudo final fique repleto
+de cálculos repetitivos.
 
-```{r}
-#| echo: true
-.246*93.69*1.926*(1-2.5/100)^25
-```
+## Exercício
+
+:::: {.columns}
+
+::: {.column width="55%"}
+- Dados do Terreno:
+  - Área: 400m2
+  - qt = 2.000,00 R$/m2
+  - CA básico: 1
+  - TO: 0,5
+  - Pesos: 3:1 (térreo:superiores)
+  - Taxa de renda: 8% a.a.
+- Considerar a idade no cálculo do coeficiente de aproveitamento, através da 
+seguinte expressão:
+  - $CA = \frac{A_{hu}}{A_{hexist}}.\left (0,2+0,8\frac{V-v}{V}\right )$
+:::
+
+::: {.column width="45%"}
+- Dados da Benfeitoria:
+  - Idade aparente: 15 anos
+  - Vida útil: 60 anos
+  - Taxa de renda: 12% a.a.
+  - qb = 2.000,00 R$/m2 (x 1,2)
+- Considerar a depreciação pelo método da linha reta, com valor residual igual a
+20%.
+- Considerar o Fator de Comercialização igual a 1,10, tanto para o Capital 
+Terreno, quanto para o Capital Benfeitoria!
+:::
+
+::::
+
+## Exercício
+
+- Unidade 1: Loja (Térreo) com 90m2;
+- Unidade 2: Loja (Térreo) com 60m2;
+- Unidade 3: Laje corporativa (1º andar), com 150 m2;
+- Unidade 4: Sala Comercial (2º andar), com 60 m2;
+- Unidade 5: Sala Comercial (2º andar), com 90 m2;
+
+- DICAS: 
+  - Para uma melhor apresentação, resolva pela fórmula da Cota-Parte, conforme solicitado;
+  - Elabore os cálculos em uma planilha eletrônica antes de escrever o resultado no editor de textos;
+  - Para verificação pode ser feito o cálculo do aluguel de cada andar em separado e depois aplicar a proporcionalidade entre a área do andar e a área da unidade.
+
+
 
 # Atualização de Aluguéis
 
 ## Atualização de Aluguéis
 
--   A existência de poucos dados de mercado contemporâneos exige que seja feita a comparação de dados de aluguéis contratados em perídos anteriores
+- A atualização de aluguéis é utilizada na aplicação do Método Comparativo de
+Dados de Mercado
 
--   Exemplo: calcular o aluguel vigente em maio/2008 [@damato, 755]
+-   A existência de poucos dados de mercado contemporâneos exige que seja feita 
+a comparação de dados de aluguéis contratados em perídos anteriores
+
+-   Exemplo: calcular o aluguel vigente em maio/2008 [@damato, 75]:
 
 . . .
 
 ```{r}
+library(tibble)
+library(knitr)
 df <- tribble(
   ~Id,       ~Inicio, ~Prazo, ~Aluguel, ~Reajuste, ~Indice,
     1,  "01/03/2014",   5*12,     1400,   "Anual", "IGP-M",
@@ -372,7 +533,27 @@ df <- tribble(
 kable(df)
 ```
 
-## Atualização de Aluguéis
+## Atualização de Aluguéis {.smaller}
+
+- **Luvas**: luvas são a cobrança de uma certa importância no início da locação
+(Candeloro, n.d., 70)
+  - Pela atual legislação, as luvas só podem ser cobradas no início da locação, 
+  porém não na renovação;
+  - Para o tratamento equânime dos dados de aluguéis com ou sem luvas, estas,
+  quando existentes, devem ser diluídas e acrescentadas ao valor mensal do 
+  aluguel;
+    - É necessário, para isto, aplicação de juros e correção monetária;
+  
+- Exemplo [@damato, 169-170]:
+  - Aluguel com contrato de 5 anos (60 meses).
+    - Valor locatício mensal: R$ 2.000,00
+    - Luvas: R$ 50.000
+    - Selic: 9,25% a.a. (0,74% a.m.)
+    - Correção monetária: 1,37% a.a. (0,114% a.m.)
+- Solução:
+  - Taxa efetiva: $(1+0,0074).(1+0,00114)-1=0,855\%$
+  - Fator de recuperação do capital: $FRC(0,855\%, 60) = 0,02137$
+  - Aluguel: $$Al = 2.000 + 50.000\times0,02137 = 3.067,00/\text{mês}$$
 
 ## Atualização de Aluguéis {.smaller}
 
@@ -419,7 +600,7 @@ Mercados <- tibble(
 Romans <- tibble(label = c("I", "II", "III", "IV"), 
                  x = c(8, -8, -8, 8),
                  y = c(4.5, 4.5, -4.5, -4.5))
-
+library(ggplot2)
 p1 <- ggplot(mapping = aes(x = x, y = y)) + 
   # geom_path(data = supply, color = "#0073D9", size = 1) + 
   geom_path(data = demand_property, color = "#FF4036", size = 1) +

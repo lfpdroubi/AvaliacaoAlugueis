@@ -1,8 +1,8 @@
 ---
-title: "Availação de Alugueis"
+title: "Avaliação de Alugueis"
 subtitle: "Parte 02"
 author: "Luiz Fernando Palin Droubi"
-date: "17/11/2024"
+date: "23/11/2024"
 bibliography: referencias.bib
 format: 
   metropolis-revealjs:
@@ -182,7 +182,7 @@ prefer-html: true
         -   O que seria o $CA_{básico}$?
         -   $CA_{básico} = \frac{2.100}{8.064}=0,26$
         -   Aplicou-se $C_{Ap} = 1 – [((E – e)/E).(0,20 + (0,80.(V – v)/V))]$
-        -   E chegou-se a: $C_{Ap} =  = 1 – [((8.064 – 2.100)/8.064) (0,20 + (0,80.(60-22)/60))] = 1 – (0,7396 . 0,7067) = 0,477$
+        -   E chegou-se a: $C_{Ap} = 1 – [((8.064 – 2.100)/8.064) (0,20 + (0,80.(60-22)/60))] = 1 – (0,7396 . 0,7067) = 0,477$
         -   O coeficiente de aproveitamento aumentou após a consideração da idade!!!
         -   Pode-se perceber que o erro está no componente básico da fórmula!
         -   Correto seria: $C_{Ap} = 1 – [ (e/E) . ( 0,20 + ( 0,80 . (V – v)/V))] = 1 – (0,26 . 0,7067) = 0,184$
@@ -213,174 +213,502 @@ prefer-html: true
     -   $C_{Ap} = 1 – [ (e/E) . (0,20 + (0,80.(V – v)/V)).(p/P)] = 1 – (0,26.0,7067.0.763) = 0,184$
 -   Não faz sentido, ao meu ver, que a variável padrão seja considerada na forma aditiva, enquanto as outras são consideradas na forma multiplicativa.
 
-# Método Comparativo
+# Hipótese de Harper
 
-## O Método Comparativo {.smaller}
+## Hipótese de Harper
 
--   O Método Comparativo Direto de Dados de Mercado (MCDDM) tenta contornar a necessidade de estabelecimento de uma taxa de remuneração do capital, através da pesquisa direta de dados de mercado de aluguéis de imóveis com diferentes características
+- A hipótese de Harper visa corrigir a área da loja para diferentes profundidades
 
-. . .
+- A hipótese de Harper considera que o preço médio do metro quadrado varia de
+forma parabólica com relação à profundidade padrão para o local [@damato, p. 168]
+
+- A hipótese implica que:
+  - A primeira quarta parte da loja (da frente à via de acesso), corresponde à
+  50% do valor da loja;
+  - A segunda quarta parte equivale a 21%;
+  - A terceira quarta parte equivale a 16%;
+  - E a quarta quarta parte equivale a 13%.
+  
+- A hipótese de Harper não corrige o efeito de Frente da loja
+  
+## Hipótese de Harper
+
+
+
+
+
+::::: columns
+::: {.column width="50%"}
+  
+$$V_l = V_u(\sqrt{aSf_p}+A_p)$$ 
+
+
+:::
+
+::: {.column width="50%"}
+
+
+- $a$: frente da loja 
+- $S$: área da loja 
+- $f_p$: fundo padrão (de 15 a 20m) 
+- $A_P$: demais áreas
+
+
+:::
+
+::::
+
+. . . 
+
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![](Alugueis_02_files/figure-revealjs/unnamed-chunk-1-1.png){width=80%}
+:::
+:::
+
+
+  
+## Hipótese de Harper {.smaller}
+
+### Exemplo [Adaptado de @damato, p. 168]:
+
+::::: columns
+::: {.column width="50%"}
+
+- Seja a amostra:
 
 
 
 ::: {.cell}
 ::: {.cell-output-display}
 
+`````{=html}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Id </th>
+   <th style="text-align:right;"> Frente </th>
+   <th style="text-align:right;"> Prof </th>
+   <th style="text-align:right;"> Vl </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 450 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 450 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 500 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 500 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 500 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 550 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 600 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 700 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 750 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:right;"> 750 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 785 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 850 </td>
+  </tr>
+</tbody>
+</table>
 
-| id|   Area| Aluguel| Condo|Padrao | PadraoProxy| Idade|
-|--:|------:|-------:|-----:|:------|-----------:|-----:|
-|  1|  90.00|    2755|   285|Alto   |       2.160|    25|
-|  2|  87.00|    2310|   285|Médio  |       1.926|    25|
-|  3|  90.00|    2215|   230|Alto   |       2.160|    30|
-|  4|  95.00|    1830|   230|Baixo  |       1.692|    30|
-|  5|  90.00|    2000|   230|Alto   |       2.160|    30|
-|  6| 105.00|    1830|   290|Médio  |       1.926|    25|
-|  7| 100.00|    1640|   250|Baixo  |       1.692|    30|
-|  8|  93.69|      NA|   250|Alto   |       1.926|    25|
-
-
-:::
-:::
-
-
-
-## O Método Comparativo {.smaller}
-
-## Análise Exploratória
-
-
-
-::: {.cell}
-
-:::
-
-::: {.cell}
-::: {.cell-output-display}
-![](Alugueis_02_files/figure-revealjs/unnamed-chunk-3-1.png){width=960}
-:::
-:::
-
-
-
-## O Método Comparativo {.smaller}
-
-## Análise Exploratória
-
-
-
-::: {.cell}
-::: {.cell-output-display}
-![](Alugueis_02_files/figure-revealjs/unnamed-chunk-4-1.png){width=960}
-:::
-:::
-
-
-
-## O Método Comparativo {.smaller}
-
-## Análise Exploratória
-
-
-
-::: {.cell}
-::: {.cell-output-display}
-![](Alugueis_02_files/figure-revealjs/unnamed-chunk-5-1.png){width=960}
-:::
-:::
-
-
-
-## O Método Comparativo {.smaller}
-
-## Análise de regressão
-
-
-
-::: {.cell}
-::: {.cell-output-display}
-
-
-|term              |  estimate| std.error| statistic|   p.value|
-|:-----------------|---------:|---------:|---------:|---------:|
-|(Intercept)       | 13.128778| 2.5302474|  5.188733| 0.0065668|
-|log(Area)         | -2.205286| 0.5582370| -3.950448| 0.0168117|
-|log(PadraoDeprec) |  0.768293| 0.2693386|  2.852518| 0.0462779|
-
-
-:::
-:::
-
-
-
-## O Método Comparativo {.smaller}
-
-## Análise de regressão
-
-
-
-::: {.cell}
-::: {.cell-output-display}
-![](Alugueis_02_files/figure-revealjs/unnamed-chunk-7-1.png){width=960}
-:::
-:::
-
-
-
-## O Método Comparativo {.smaller}
-
-## Previsão de Valores
-
-
-
-::: {.cell}
-::: {.cell-output .cell-output-stdout}
-
-```
-       fit      lwr      upr
-1 22.96763 21.73908 24.26562
-```
-
+`````
 
 :::
 :::
 
 
 
-## O Método Comparativo {.smaller}
+:::
 
-## Alternativa (não-recomendado!)
+::: {.column width="50%"}
+
+- Avaliar o aluguel de uma loja com 8x15$m^2$
+
+- $$VU_{hom} = \frac{VU.S}{\sqrt{a.S.f_p.}}$$
+
+- $$VU_{hom} = \frac{VU.S}{\sqrt{8.S.20}}$$
+
+:::
+
+::::
+
+## Hipótese de Harper {.smaller}
+
+### Solução:
+
+::::: columns
+::: {.column width="60%"}
+
+- Homogeneização:
 
 
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](Alugueis_02_files/figure-revealjs/unnamed-chunk-9-1.png){width=960}
+
+`````{=html}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Id </th>
+   <th style="text-align:right;"> Frente </th>
+   <th style="text-align:right;"> Prof </th>
+   <th style="text-align:right;"> Vl </th>
+   <th style="text-align:right;"> Area </th>
+   <th style="text-align:right;"> VU </th>
+   <th style="text-align:right;"> Harper </th>
+   <th style="text-align:right;"> VUhom </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 450 </td>
+   <td style="text-align:right;"> 64 </td>
+   <td style="text-align:right;"> 7,03 </td>
+   <td style="text-align:right;"> 0,63 </td>
+   <td style="text-align:right;"> 4,45 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 450 </td>
+   <td style="text-align:right;"> 80 </td>
+   <td style="text-align:right;"> 5,62 </td>
+   <td style="text-align:right;"> 0,71 </td>
+   <td style="text-align:right;"> 3,98 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 500 </td>
+   <td style="text-align:right;"> 96 </td>
+   <td style="text-align:right;"> 5,21 </td>
+   <td style="text-align:right;"> 0,77 </td>
+   <td style="text-align:right;"> 4,03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 500 </td>
+   <td style="text-align:right;"> 112 </td>
+   <td style="text-align:right;"> 4,46 </td>
+   <td style="text-align:right;"> 0,84 </td>
+   <td style="text-align:right;"> 3,74 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 500 </td>
+   <td style="text-align:right;"> 128 </td>
+   <td style="text-align:right;"> 3,91 </td>
+   <td style="text-align:right;"> 0,89 </td>
+   <td style="text-align:right;"> 3,49 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 550 </td>
+   <td style="text-align:right;"> 144 </td>
+   <td style="text-align:right;"> 3,82 </td>
+   <td style="text-align:right;"> 0,95 </td>
+   <td style="text-align:right;"> 3,62 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 600 </td>
+   <td style="text-align:right;"> 160 </td>
+   <td style="text-align:right;"> 3,75 </td>
+   <td style="text-align:right;"> 1,00 </td>
+   <td style="text-align:right;"> 3,75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 700 </td>
+   <td style="text-align:right;"> 176 </td>
+   <td style="text-align:right;"> 3,98 </td>
+   <td style="text-align:right;"> 1,05 </td>
+   <td style="text-align:right;"> 4,17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 750 </td>
+   <td style="text-align:right;"> 192 </td>
+   <td style="text-align:right;"> 3,91 </td>
+   <td style="text-align:right;"> 1,10 </td>
+   <td style="text-align:right;"> 4,28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:right;"> 750 </td>
+   <td style="text-align:right;"> 208 </td>
+   <td style="text-align:right;"> 3,61 </td>
+   <td style="text-align:right;"> 1,14 </td>
+   <td style="text-align:right;"> 4,11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 785 </td>
+   <td style="text-align:right;"> 224 </td>
+   <td style="text-align:right;"> 3,50 </td>
+   <td style="text-align:right;"> 1,18 </td>
+   <td style="text-align:right;"> 4,15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 850 </td>
+   <td style="text-align:right;"> 240 </td>
+   <td style="text-align:right;"> 3,54 </td>
+   <td style="text-align:right;"> 1,22 </td>
+   <td style="text-align:right;"> 4,34 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+
 :::
 :::
 
 
 
-## O Método Comparativo {.smaller}
+:::
 
-## Alternativa
+::: {.column width="40%"}
 
+- $VU_{hom} =$R$ 4,01$/m^2$
 
+- Avaliar o aluguel de uma loja com $8\times17,5 = 140m^2$:
 
-::: {.cell}
+- Homogeneização do avaliando: $S_{hom} = \sqrt{8.140.20} \approx 150,0 m^2$
 
-```{.r .cell-code}
-.246*93.69*1.926*(1-2.5/100)^25
-```
+- Valor Locatício: $Vl = S_{hom}.VU_{hom} = 150\times4,01$
 
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 23.57219
-```
-
+- Valor Locatício: $Vl \approx \text{R\$ }600,00$
 
 :::
+
+::::
+
+## Hipótese de Harper {.smaller}
+
+## Exemplo 2:
+
+- Com os dados do exemplo anterior, calcular o aluguel de uma loja com 8x22,5m2,
+contando com mais 50$m^2$ de sobreloja (mezzanino)
+
+- Solução:
+  - $S_{hom} = \sqrt{8.180.20} + 50/2$
+  - $S_{hom} = 169,70 + 25 = 194,70m^2$
+  - $Vl = S_{hom}.VU_{hom} = 194,70\times4,01$
+  - $Vl \approx \text{R\$ }780,75$ 
+
+# Cota parte
+
+## Cota parte
+
+- Em muitos casos a avaliação desejada é de uma unidade do edifício e não do seu
+todo
+- Assim surge o problema, nos casos de aplicação do método evolutivo, de saber
+qual cota-parte do terreno cabe àquela unidade que se deseja avaliar.
+- Matematicamente:
+  - $CP = \frac{A_{hu}}{A_{ht}}; \qquad CT_{un} = CT.CP$
+    - CP: Cota-Parte
+    - CT: Capital Terreno (Total)
+    - CTun: Capital Terreno correspondente à unidade em análise
+    - Ahu: área homogeneizada da unidade
+    - Aht: área homogeneizada total
+
+## Exemplo
+
+- Cálcular a Cota Parte do Térreo num edifício composto de um terreno de 400m2,
+com área construída de 200m2 no térreo e superiores de 400m2.
+- Considerar pesos 3:1
+
+- Solução:
+  - $CP = \frac{A_{hu}}{A_{ht}} = \frac{A_{Terreo}.p_{Terreo}}{A_{Terreo}.p_{Terreo} + A_{Superiores}.p_{Superiores}}$
+  - $CP = \frac{200.3}{200.3+400.1} = \frac{600}{1.000} = 60\%$
+  
+## Cálculo do aluguel de uma cota parte
+
+- Para o cômputo do aluguel de uma única unidade, pode-se calcular a Cota Parte
+(CP) da unidade e aplicar ao valor total do Capital Terreno.
+- No entanto, se o objetivo for calcular apenas o valor do aluguel da unidade,
+pode-se calcular o Capital terreno referente à unidade (CTun) diretamente 
+através da fórmula (Candeloro, p.63):
+
+. . . 
+
+$$CT_{un} = q_t.\frac{A_{hu}}{TO.p_{Térreo} + (CA_{básico}-TO).p_{Superiores}}$$
+
+- qt: Unitário do Terreno
+- TO: Taxa de Ocupação do Terreno
+- CAbásico: Coeficiente de Aproveitamento Básico do Terreno
+
+## Exemplo
+
+- Loja, com 200m2 no térreo e 100m2 no superior. O valor unitário do terreno é 
+de qt = 1.000,00 R$/m2, porém sua área total é desconhecida, assim como as áreas
+construídas das outras áreas. Considerar TO = 0,8, CA = 3,5 e pesos 5:1
+
+- Solução:
+  - $CT_{un} = q_t.\frac{A_{hu}}{TO.p_{Térreo} + (CA_{básico}-TO).p_{Superiores}}$
+  - $CT_{un} = 1.000,00.\frac{200.5+100.1}{0,8.5,0 + (3,5-0,8).1,0}$
+  - $CT_{un} = 164.179,10$
+
+## Exercício {.smaller}
+
+- Imaginem que o escritório de Avaliações e Perícias em que você trabalha foi 
+contratado por um potencial comprador de um edifício localizado na  região 
+central da cidade para efetuar a avaliação do aluguel de diversas lojas e 
+escritórios neste edifício;
+- O edifício é constituído de Térreo + 2 andares, cada um com 150m2;
+- O proprietário pretende ocupar com seu escritório pouco mais da metade da área 
+do 2º pavimento (90 m2) e locar o restante;
+- O proprietário informou que algumas pessoas já manifestaram interesse em locar 
+espaços no seu prédio
+  - 1 interessado em instalar uma loja (térreo) com 90 m2;
+  - 1 interessado em uma loja (térreo) com 60 m2;
+  - 1 interessado em uma laje corporativa de 150 m2 para sua empresa (1º pavimento);
+  - 1 interessado na metade restante do 2º pavimento (60 m2);
+- O potencial proprietário ainda deseja saber qual o valor do aluguel da área que ele 
+próprio irá ocupar no 2º pavimento (90 m2), para fins de calcular o VPL da 
+compra do edifício (aluguel implícito).
+
+## Exercício
+
+- O diretor de Avaliações resolveu pulverizar o trabalho entre diversos 
+avaliadores;
+- No entanto, para que o resultado final seja um trabalho uniforme, o Diretor 
+estabeleu os critérios que cada avaliador deverá considerar nas suas avaliações. 
+- Os critérios estabelecidos pelo Diretor, assim como os dados por ele 
+disponibilizados para os avaliadores encontram-se nos próximos slides.
+- Para uma melhor apresentação do trabalho, o Diretor solicitou que fosse 
+utilizado o método da Cota Parte, evitando assim que o laudo final fique repleto
+de cálculos repetitivos.
+
+## Exercício
+
+:::: {.columns}
+
+::: {.column width="55%"}
+- Dados do Terreno:
+  - Área: 400m2
+  - qt = 2.000,00 R$/m2
+  - CA básico: 1
+  - TO: 0,5
+  - Pesos: 3:1 (térreo:superiores)
+  - Taxa de renda: 8% a.a.
+- Considerar a idade no cálculo do coeficiente de aproveitamento, através da 
+seguinte expressão:
+  - $CA = \frac{A_{hu}}{A_{hexist}}.\left (0,2+0,8\frac{V-v}{V}\right )$
 :::
+
+::: {.column width="45%"}
+- Dados da Benfeitoria:
+  - Idade aparente: 15 anos
+  - Vida útil: 60 anos
+  - Taxa de renda: 12% a.a.
+  - qb = 2.000,00 R$/m2 (x 1,2)
+- Considerar a depreciação pelo método da linha reta, com valor residual igual a
+20%.
+- Considerar o Fator de Comercialização igual a 1,10, tanto para o Capital 
+Terreno, quanto para o Capital Benfeitoria!
+:::
+
+::::
+
+## Exercício
+
+- Unidade 1: Loja (Térreo) com 90m2;
+- Unidade 2: Loja (Térreo) com 60m2;
+- Unidade 3: Laje corporativa (1º andar), com 150 m2;
+- Unidade 4: Sala Comercial (2º andar), com 60 m2;
+- Unidade 5: Sala Comercial (2º andar), com 90 m2;
+
+- DICAS: 
+  - Para uma melhor apresentação, resolva pela fórmula da Cota-Parte, conforme solicitado;
+  - Elabore os cálculos em uma planilha eletrônica antes de escrever o resultado no editor de textos;
+  - Para verificação pode ser feito o cálculo do aluguel de cada andar em separado e depois aplicar a proporcionalidade entre a área do andar e a área da unidade.
 
 
 
@@ -388,9 +716,13 @@ prefer-html: true
 
 ## Atualização de Aluguéis
 
--   A existência de poucos dados de mercado contemporâneos exige que seja feita a comparação de dados de aluguéis contratados em perídos anteriores
+- A atualização de aluguéis é utilizada na aplicação do Método Comparativo de
+Dados de Mercado
 
--   Exemplo: calcular o aluguel vigente em maio/2008 [@damato, 755]
+-   A existência de poucos dados de mercado contemporâneos exige que seja feita 
+a comparação de dados de aluguéis contratados em perídos anteriores
+
+-   Exemplo: calcular o aluguel vigente em maio/2008 [@damato, 75]:
 
 . . .
 
@@ -413,7 +745,27 @@ prefer-html: true
 
 
 
-## Atualização de Aluguéis
+## Atualização de Aluguéis {.smaller}
+
+- **Luvas**: luvas são a cobrança de uma certa importância no início da locação
+(Candeloro, n.d., 70)
+  - Pela atual legislação, as luvas só podem ser cobradas no início da locação, 
+  porém não na renovação;
+  - Para o tratamento equânime dos dados de aluguéis com ou sem luvas, estas,
+  quando existentes, devem ser diluídas e acrescentadas ao valor mensal do 
+  aluguel;
+    - É necessário, para isto, aplicação de juros e correção monetária;
+  
+- Exemplo [@damato, 169-170]:
+  - Aluguel com contrato de 5 anos (60 meses).
+    - Valor locatício mensal: R$ 2.000,00
+    - Luvas: R$ 50.000
+    - Selic: 9,25% a.a. (0,74% a.m.)
+    - Correção monetária: 1,37% a.a. (0,114% a.m.)
+- Solução:
+  - Taxa efetiva: $(1+0,0074).(1+0,00114)-1=0,855\%$
+  - Fator de recuperação do capital: $FRC(0,855\%, 60) = 0,02137$
+  - Aluguel: $$Al = 2.000 + 50.000\times0,02137 = 3.067,00/\text{mês}$$
 
 ## Atualização de Aluguéis {.smaller}
 
