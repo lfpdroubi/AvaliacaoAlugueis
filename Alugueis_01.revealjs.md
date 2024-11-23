@@ -360,6 +360,16 @@ como o mais rentável para a construtora!
 - O raciocínio é o seguinte: o VPL é o mesmo para ambos os projetos, porém no 
 projeto 2 o investimento é menor (e retorna mais rápido)!
 
+## Comparação por TIR
+
+- Um bom exercício para este momento é:
+  - Imagine que o Projeto 2 atrasou. 
+    - Irá apresentar o mesmo resultado (20% de R$ 8.000.000,00)
+    - Porém, agora com prazo de 5 anos
+    - Calcule a nova TIR do Projeto 2.
+    - Compare-a à TIR inicial e à TIR do primeiro projeto
+    - Faça também o cálculo do novo VPL e das rentabilidades!
+    
 # Avaliação de Aluguéis
 
 ## Método da Renda {.smaller}
