@@ -1,0 +1,26 @@
+---
+title: "Avaliação de Alugueis"
+subtitle: "Estudo de Caso de Aluguel Comercial"
+author: "Luiz Fernando Palin Droubi"
+date: last-modified
+bibliography: referencias.bib
+format: 
+  metropolis-revealjs:
+#    smaller: true
+    keep-md: true
+    incremental: true  
+prefer-html: true
+---
+
+## PROBLEMA A RESOLVER:
+
+Estimar o valor do aluguel de um imóvel comercial na cidade de Teresina-PI, ocupado com uma agência bancária, com uma área construída de 3.716,42m²; 
+Encravado em um terreno de 1.120,00m²;
+
+- VALORES DAS VARIÁVEIS:
+ - Área de construção = 3.716,42m²;
+ - Área do pavimento térreo de 558,00m²;
+ - Está distante do ponto considerado como polo de valorização da cidade de 380,00m;
+ - Não possui garagem no subsolo;
+ - Possui uma idade aparente de mais de 10 anos;
+

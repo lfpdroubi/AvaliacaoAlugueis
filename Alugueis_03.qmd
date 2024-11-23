@@ -2,7 +2,7 @@
 title: "Avaliação de Alugueis"
 subtitle: "Parte 03"
 author: "Luiz Fernando Palin Droubi"
-date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+date: last-modified
 bibliography: referencias.bib
 format: 
   metropolis-revealjs:
@@ -118,16 +118,16 @@ prefer-html: true
     -   $F_{OC}= (1-R)^{I_E}$
         -   $R$: Razão da Depreciação ($R = 1/I_R$)
 
-. . . 
-        
-| TIPO                                                 |Vida útil | R (%) |
-|------------------------------------------------------|----------|-------|
-| Barracos                                             | 25       | 4,0   |
-| Residência Proletário  Rústico a médio comercial     | 67       | 1,5   |
-| Residências médio superior a luxo                    | 50       | 2,0   |
-| Apartamentos e Escritórios                           | 40       | 40    |
-| Armazéns e Indústrias                                | 67       | 67    |
-| Construções de Madeira                               | 25       | 25    |
+. . .
+
+| TIPO                                            | Vida útil | R (%) |
+|-------------------------------------------------|-----------|-------|
+| Barracos                                        | 25        | 4,0   |
+| Residência Proletário Rústico a médio comercial | 67        | 1,5   |
+| Residências médio superior a luxo               | 50        | 2,0   |
+| Apartamentos e Escritórios                      | 40        | 40    |
+| Armazéns e Indústrias                           | 67        | 67    |
+| Construções de Madeira                          | 25        | 25    |
 
 : Razões a considerar no método do valor decrescente
 
@@ -188,10 +188,9 @@ df$PUhom <- df$PU*df$Ftotal
 kable(df, digits = 2)
 ```
 
-- Saneamento da amostra:
+-   Saneamento da amostra:
 
-. . . 
-
+. . .
 
 ```{r}
 #| echo: true
@@ -199,7 +198,7 @@ kable(df, digits = 2)
 outlier_analysis(df$PUhom, criterion = "chauvenet")
 ```
 
-- PU médio homogeneizado: `r Reais(mean(df$PUhom[-6], na.rm = T))`$/m^2$
+-   PU médio homogeneizado: `r Reais(mean(df$PUhom[-6], na.rm = T))`$/m^2$
 
 ## Apartamentos {.smaller}
 
@@ -208,7 +207,6 @@ outlier_analysis(df$PUhom, criterion = "chauvenet")
 ```{r}
 plotdf(PU ~ Area + Padrao, data = df, labels = T)
 ```
-
 
 ## Apartamentos {.smaller}
 
@@ -324,6 +322,7 @@ plot(predictorEffects(fit1, residuals = T), id = T,
      axes=list(grid=TRUE, x=list(rotate=45)),
      partial.residuals=list(smooth=TRUE, span=1.25, lty = "dashed"))
 ```
+
 ## Apartamentos (2) {.smaller .scrollable}
 
 ### @damato [p. 372]
@@ -366,24 +365,25 @@ kable(dados, digits = 2,
 
 ## Apartamentos (2) {.smaller}
 
-- Saneamento da amostra:
+-   Saneamento da amostra:
 
-. . . 
+. . .
 
 ```{r}
 #| echo: true
 outlier_analysis(dados$PUhom, criterion = "chauvenet")
 ```
 
-- $PU_{hom} =$ `r mean(dados$PUhom[-c(8,11)], na.rm = T)`  
+-   $PU_{hom} =$ `r mean(dados$PUhom[-c(8,11)], na.rm = T)`
 
 ## Lojas {.smaller}
 
 ### @damato [p. 240]
 
-- 37 dados de lojas de dierentes ramos
+-   37 dados de lojas de diferentes ramos
 
-. . . 
+. . .
+
 
 ```{r}
 library(forcats)
@@ -420,7 +420,6 @@ plot(predictorEffects(fit, predictors = c("Area", "Atividade"),
 
 ## Lojas
 
-
 ```{r}
 plot(predictorEffect("Andar", fit),
      axes=list(y=list(transform=exp, lab="VU")))
@@ -455,8 +454,7 @@ kable(tabela, digits = 2,
 
 ## Lojas (avaliação)
 
-* De posse do modelo acima, avaliar o valor mínimo do aluguel de uma loja de 
-110m2, de roupas masculinas no piso térreo neste shopping center.
+-   De posse do modelo acima, avaliar o valor mínimo do aluguel de uma loja de 110m2, de roupas masculinas no piso térreo neste shopping center.
 
 ```{r}
 p <- predict(fit, newdata = list(Area = 110, Atividade = "roupas masculinas",
@@ -464,25 +462,20 @@ p <- predict(fit, newdata = list(Area = 110, Atividade = "roupas masculinas",
              interval = "confidence", level = 0.80)
 ```
 
-
-* O valor calculado foi de: `r brf(exp(p[, "fit"]))` [`r brf(exp(p[, "lwr"]))`; 
-`r brf(exp(p[, "upr"]))`]
-
+-   O valor calculado foi de: `r brf(exp(p[, "fit"]))` \[`r brf(exp(p[, "lwr"]))`; `r brf(exp(p[, "upr"]))`\]
 
 ## Terrenos
 
 ### Considerações importantes
 
-* Primeiro há de se considerar o melhor uso, se comercial ou residencial
-   + Terrenos residenciais, em geral, não são para locar.
-   + Apenas os terrenos comerciais nos interessam aqui.
-* Deve-se dar preferência ao Método Comparativo
-   + Problema: pode haver falta de dados para comparação
-   + Com poucos dados, pode ser viável apenas o tratamento por fatores
-   + Pode-se buscar dados de terrenos com construções para aumentar a amostra,
-   descontando, é claro, o valor das construções para efeito de comparativo
-* Na ausência de dados em número suficiente, deve-se utilizar o Método da 
-Remuneração do Capital
+-   Primeiro há de se considerar o melhor uso, se comercial ou residencial
+    -   Terrenos residenciais, em geral, não são para locar.
+    -   Apenas os terrenos comerciais nos interessam aqui.
+-   Deve-se dar preferência ao Método Comparativo
+    -   Problema: pode haver falta de dados para comparação
+    -   Com poucos dados, pode ser viável apenas o tratamento por fatores
+    -   Pode-se buscar dados de terrenos com construções para aumentar a amostra, descontando, é claro, o valor das construções para efeito de comparativo
+-   Na ausência de dados em número suficiente, deve-se utilizar o Método da Remuneração do Capital
 
 ## Terrenos {.smaller}
 
@@ -497,8 +490,6 @@ kable(head(dadosTerrenos[, -c(4, 11, 13)], 6), digits = 2,
                     "A. Construída", "Padrão", "Fd"))
 ```
 
-- Não se trata de um caso de aluguel resolvido pelo Comparativo.
-  - Porém era mais natural apresentar aqui neste ponto.
 
 ## Terrenos (análise exploratória)
 
@@ -534,7 +525,7 @@ ggplot(dadosTerrenos[-6, ], aes(x = Area, y = Valor)) +
   scale_x_continuous(labels = scales::label_number_auto()) 
 ```
 
-## Terrenos 
+## Terrenos
 
 ### Cálculo do valor residual
 
@@ -552,7 +543,7 @@ kable(head(dadosTerrenos[, c("Id", "Preco", "AreaConstruida", "FatorPadrao", "Fo
       col.names = c("Id", "Preço", "A. Construída", "Padrão", "Fd", "Valor da Construção", "Valor Residual"))
 ```
 
-## Terrenos 
+## Terrenos
 
 ```{r}
 my.formula <- y ~ x
@@ -569,7 +560,7 @@ ggplot(dadosTerrenos[-6, ], aes(x = Area, y = ValorResidual)) +
   scale_x_continuous(labels = scales::label_number_auto()) 
 ```
 
-## Terrenos 
+## Terrenos
 
 ```{r}
 my.formula <- y ~ x
@@ -587,7 +578,7 @@ ggplot(dadosTerrenos[-c(6), ], aes(x = Area, y = ValorResidual)) +
   scale_x_continuous(transform = "log", labels = scales::label_number_auto())
 ```
 
-## Terrenos 
+## Terrenos
 
 ```{r}
 my.formula <- y ~ x
@@ -631,10 +622,9 @@ kable(tabela, digits = 2,
 
 ## Terrenos (avaliação)
 
-* Valor de venda:
+-   Valor de venda:
 
-. . . 
-
+. . .
 
 ```{r}
 p <- predict(fit, newdata = list(Area = 881.76), 
@@ -642,7 +632,7 @@ p <- predict(fit, newdata = list(Area = 881.76),
 exp(p)
 ```
 
-* Valor de Locação: $1.060.000,00*[(1+0,06)^{1/12}-1]=$ `r brf(1060000*((1+.06)^(1/12)-1))`
+-   Valor de Locação: $1.060.000,00*[(1+0,06)^{1/12}-1]=$ `r brf(1060000*((1+.06)^(1/12)-1))`
 
 ## Armazéns {.smaller}
 
@@ -659,7 +649,7 @@ kable(head(dadosArmazens[, -11], 7), digits = 2,
                     "VU"))
 ```
 
-- Considerado: $VU = \frac{Aluguel}{AreaTerreno}$
+-   Considerado: $VU = \frac{Aluguel}{AreaTerreno}$
 
 ## Armazéns (análise exploratória)
 
@@ -702,7 +692,7 @@ kable(tabela, digits = 2,
       col.names = c("Termo", "Estimativa", "Erro-padrão", "Estatística t", "p-valor"))
 ```
 
-- Equação de Estimação: $$VU = 5,99.\left(\frac{AreaTerreno}{15000}\right)^{-1,03}.\left(\frac{AreaConstruida}{12.086,22}\right)^{0,83}.0,98^{Idade-10}$$
+-   Equação de Estimação: $$VU = 5,99.\left(\frac{AreaTerreno}{15000}\right)^{-1,03}.\left(\frac{AreaConstruida}{12.086,22}\right)^{0,83}.0,98^{Idade-10}$$
 
 ## Armazéns (modelo)
 
@@ -735,14 +725,11 @@ fit1 <- update(fit, subset = -4)
 powerPlot(fit1, system = "ggplot2", Smooth = TRUE, axis = "inverted")
 ```
 
-
 ## Armazéns (Avaliação)
 
-* De posse do modelo acima, avaliar o valor do aluguel de um armazém com terreno
-de área igual a 15.000 m2, com Área Construída de 12.086,22 e Idade igual a 
-5 anos.
+-   De posse do modelo acima, avaliar o valor do aluguel de um armazém com terreno de área igual a 15.000 m2, com Área Construída de 12.086,22 e Idade igual a 5 anos.
 
-. . . 
+. . .
 
 ```{r echo = T}
 p <- predict(fit1, newdata = list(AreaTerreno = 15000, AreaConstruida = 12086.22,
@@ -751,31 +738,25 @@ p <- predict(fit1, newdata = list(AreaTerreno = 15000, AreaConstruida = 12086.22
 exp(p)
 ```
 
+-   O valor calculado foi de: `r brf(15000*0.9*exp(p[, "fit"]))` \[`r brf(15000*0.9*exp(p[, "lwr"]))`; `r brf(15000*0.9*exp(p[, "upr"]))`\]
 
-- O valor calculado foi de: `r brf(15000*0.9*exp(p[, "fit"]))` 
-[`r brf(15000*0.9*exp(p[, "lwr"]))`; `r brf(15000*0.9*exp(p[, "upr"]))`]
+-   @damato [p. 254]: R\$ 90.936,00
 
-- @damato [p. 254]: R$ 90.936,00
-  - Modelo: $\frac{1}{Area} = 2,5765.10^{-5}+\frac{0,09618}{\text{Area Construida}}-3,7878.10^{-6}.\text{Conservacao}$
+    -   Modelo: $\frac{1}{Area} = 2,5765.10^{-5}+\frac{0,09618}{\text{Area Construida}}-3,7878.10^{-6}.\text{Conservacao}$
 
 # Casos Especiais
 
 ## Cinemas
 
-- Em casos especiais, como nos cinemas, pode ser utilizado o *Método da Participação*
-  - Tal método consiste em:
-    - Aferir a renda líquida do estabelecimento
-    - Aplicar a esta renda líquida um percentual médio de mercado para calcular
-    o aluguel justo ao locador
-    
-- Segundo @damato [p. 296]:
+-   Em casos especiais, como nos cinemas, pode ser utilizado o *Método da Participação*
+    -   Tal método consiste em:
+        -   Aferir a renda líquida do estabelecimento
+        -   Aplicar a esta renda líquida um percentual médio de mercado para calcular o aluguel justo ao locador
+-   Segundo @damato [p. 296]:
 
-. . . 
+. . .
 
-> Obtida a média final (das rendas líquidas), seria a mesma capitalizada em base
-às taxas de renda usuais para cinemas que são: 10% quando os equipamentos e 
-instalações são de propriedade do inquilino e 15% quando pertencem ao 
-proprietário do imóvel.
+> Obtida a média final (das rendas líquidas), seria a mesma capitalizada em base às taxas de renda usuais para cinemas que são: 10% quando os equipamentos e instalações são de propriedade do inquilino e 15% quando pertencem ao proprietário do imóvel.
 
 ## Cinemas {.smaller}
 
@@ -787,13 +768,12 @@ kable(head(dadosCinema), digits = 2,
       format.args = list(big.mark = ".", decimal.mark =","))
 ```
 
-
 ```{r}
 library(lubridate)
 dadosCinema$Ano <- year(dadosCinema$Mês)
 ```
 
-- @damato [p. 297]: $Al = 185.358,54\times12\% =\text{R\$ }22.240,00$
+-   @damato [p. 297]: $Al = 185.358,54\times12\% =\text{R\$ }22.240,00$
 
 ## Problema
 
@@ -802,26 +782,14 @@ dadosCinema$Ano <- year(dadosCinema$Mês)
 tapply(dadosCinema$`Renda Líquida Descontada`, dadosCinema$Ano, mean)
 ```
 
-- O resultado tem aumentado anualmente em torno de 10% a.a.
-- Ao considerar a média dos rendimentos anuais, @damato obtiveram um aluguel
-condizente com o ano de 2016!
-- Isto não me parece correto!
+-   O resultado tem aumentado anualmente em torno de 10% a.a.
+-   Ao considerar a média dos rendimentos anuais, @damato obtiveram um aluguel condizente com o ano de 2016!
+-   Isto não me parece correto!
 
 ## Problemas com o Método da Participação {.smaller}
 
-> Foram apresentados métodos de participação para "postos de gasolina" e para
-"cinemas". O método para "postos de serviços" foi desenvolvido pelo engenheiro
-José Carlos Pellegrino e para os "cinemas", pelo engenheiro Nelson Roberto
-Pereira Alonso. Nesses processos de participação, o aluguel é vinculado ao 
-resultado comercial do estabelecimento empresarial do inquilino.
-Se, por um lado, possui a vantagem de permitir o estabelecimento do aluguel para
-imóveis com destinação específica, tem, na opinião do autor, as desvantagens de
-punir o bom e permiar o mau comerciante, e ainda de impedir que o proprietário
-usufrua da renda de seu patrimônio de uma forma mais lucrativa do que aquela para 
-o qual originalmente foi destinado.
+> Foram apresentados métodos de participação para "postos de gasolina" e para "cinemas". O método para "postos de serviços" foi desenvolvido pelo engenheiro José Carlos Pellegrino e para os "cinemas", pelo engenheiro Nelson Roberto Pereira Alonso. Nesses processos de participação, o aluguel é vinculado ao resultado comercial do estabelecimento empresarial do inquilino. Se, por um lado, possui a vantagem de permitir o estabelecimento do aluguel para imóveis com destinação específica, tem, na opinião do autor, as desvantagens de punir o bom e permiar o mau comerciante, e ainda de impedir que o proprietário usufrua da renda de seu patrimônio de uma forma mais lucrativa do que aquela para o qual originalmente foi destinado.
 
-> Se, por qualquer motivo, a destinação original que foi dada ao imóvel passar 
-a ser inviável, não é dado ao proprietário do prédio o direito de se afastar
-desse "prejuízo"...
+> Se, por qualquer motivo, a destinação original que foi dada ao imóvel passar a ser inviável, não é dado ao proprietário do prédio o direito de se afastar desse "prejuízo"...
 
 ## Referências

@@ -2,7 +2,7 @@
 title: "Avaliação de Aluguéis"
 subtitle: "Parte 01"
 author: "Luiz Fernando Palin Droubi"
-date: "23/11/2024"
+date: last-modified
 bibliography: referencias.bib
 format: 
   metropolis-revealjs:

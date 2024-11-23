@@ -2,7 +2,7 @@
 title: "Avaliação de Alugueis"
 subtitle: "Parte 03"
 author: "Luiz Fernando Palin Droubi"
-date: "23/11/2024"
+date: last-modified
 bibliography: referencias.bib
 format: 
   metropolis-revealjs:
@@ -121,16 +121,16 @@ prefer-html: true
     -   $F_{OC}= (1-R)^{I_E}$
         -   $R$: Razão da Depreciação ($R = 1/I_R$)
 
-. . . 
-        
-| TIPO                                                 |Vida útil | R (%) |
-|------------------------------------------------------|----------|-------|
-| Barracos                                             | 25       | 4,0   |
-| Residência Proletário  Rústico a médio comercial     | 67       | 1,5   |
-| Residências médio superior a luxo                    | 50       | 2,0   |
-| Apartamentos e Escritórios                           | 40       | 40    |
-| Armazéns e Indústrias                                | 67       | 67    |
-| Construções de Madeira                               | 25       | 25    |
+. . .
+
+| TIPO                                            | Vida útil | R (%) |
+|-------------------------------------------------|-----------|-------|
+| Barracos                                        | 25        | 4,0   |
+| Residência Proletário Rústico a médio comercial | 67        | 1,5   |
+| Residências médio superior a luxo               | 50        | 2,0   |
+| Apartamentos e Escritórios                      | 40        | 40    |
+| Armazéns e Indústrias                           | 67        | 67    |
+| Construções de Madeira                          | 25        | 25    |
 
 : Razões a considerar no método do valor decrescente
 
@@ -193,10 +193,9 @@ prefer-html: true
 
 
 
-- Saneamento da amostra:
+-   Saneamento da amostra:
 
-. . . 
-
+. . .
 
 
 
@@ -227,7 +226,7 @@ Step 1: removing values 13.464950972952
 
 
 
-- PU médio homogeneizado: R$ 22,00$/m^2$
+-   PU médio homogeneizado: R$ 22,00$/m^2$
 
 ## Apartamentos {.smaller}
 
@@ -240,7 +239,6 @@ Step 1: removing values 13.464950972952
 ![](Alugueis_03_files/figure-revealjs/unnamed-chunk-4-1.png){width=960}
 :::
 :::
-
 
 
 
@@ -438,6 +436,7 @@ Step 1: removing values 13.464950972952
 :::
 
 
+
 ## Apartamentos (2) {.smaller .scrollable}
 
 ### @damato [p. 372]
@@ -506,9 +505,9 @@ Step 1: removing values 13.464950972952
 
 ## Apartamentos (2) {.smaller}
 
-- Saneamento da amostra:
+-   Saneamento da amostra:
 
-. . . 
+. . .
 
 
 
@@ -535,15 +534,16 @@ outlier_analysis(dados$PUhom, criterion = "chauvenet")
 
 
 
-- $PU_{hom} =$ 30.1147809  
+-   $PU_{hom} =$ 30.1147809
 
 ## Lojas {.smaller}
 
 ### @damato [p. 240]
 
-- 37 dados de lojas de dierentes ramos
+-   37 dados de lojas de diferentes ramos
 
-. . . 
+. . .
+
 
 
 
@@ -595,7 +595,6 @@ outlier_analysis(dados$PUhom, criterion = "chauvenet")
 
 
 ## Lojas
-
 
 
 
@@ -733,8 +732,7 @@ outlier_analysis(dados$PUhom, criterion = "chauvenet")
 
 ## Lojas (avaliação)
 
-* De posse do modelo acima, avaliar o valor mínimo do aluguel de uma loja de 
-110m2, de roupas masculinas no piso térreo neste shopping center.
+-   De posse do modelo acima, avaliar o valor mínimo do aluguel de uma loja de 110m2, de roupas masculinas no piso térreo neste shopping center.
 
 
 
@@ -744,25 +742,20 @@ outlier_analysis(dados$PUhom, criterion = "chauvenet")
 
 
 
-
-* O valor calculado foi de: 74,71 [69,13; 
-80,75]
-
+-   O valor calculado foi de: 74,71 \[69,13; 80,75\]
 
 ## Terrenos
 
 ### Considerações importantes
 
-* Primeiro há de se considerar o melhor uso, se comercial ou residencial
-   + Terrenos residenciais, em geral, não são para locar.
-   + Apenas os terrenos comerciais nos interessam aqui.
-* Deve-se dar preferência ao Método Comparativo
-   + Problema: pode haver falta de dados para comparação
-   + Com poucos dados, pode ser viável apenas o tratamento por fatores
-   + Pode-se buscar dados de terrenos com construções para aumentar a amostra,
-   descontando, é claro, o valor das construções para efeito de comparativo
-* Na ausência de dados em número suficiente, deve-se utilizar o Método da 
-Remuneração do Capital
+-   Primeiro há de se considerar o melhor uso, se comercial ou residencial
+    -   Terrenos residenciais, em geral, não são para locar.
+    -   Apenas os terrenos comerciais nos interessam aqui.
+-   Deve-se dar preferência ao Método Comparativo
+    -   Problema: pode haver falta de dados para comparação
+    -   Com poucos dados, pode ser viável apenas o tratamento por fatores
+    -   Pode-se buscar dados de terrenos com construções para aumentar a amostra, descontando, é claro, o valor das construções para efeito de comparativo
+-   Na ausência de dados em número suficiente, deve-se utilizar o Método da Remuneração do Capital
 
 ## Terrenos {.smaller}
 
@@ -789,8 +782,6 @@ Remuneração do Capital
 
 
 
-- Não se trata de um caso de aluguel resolvido pelo Comparativo.
-  - Porém era mais natural apresentar aqui neste ponto.
 
 ## Terrenos (análise exploratória)
 
@@ -816,7 +807,7 @@ Remuneração do Capital
 
 
 
-## Terrenos 
+## Terrenos
 
 ### Cálculo do valor residual
 
@@ -845,7 +836,7 @@ Remuneração do Capital
 
 
 
-## Terrenos 
+## Terrenos
 
 
 
@@ -857,7 +848,7 @@ Remuneração do Capital
 
 
 
-## Terrenos 
+## Terrenos
 
 
 
@@ -869,7 +860,7 @@ Remuneração do Capital
 
 
 
-## Terrenos 
+## Terrenos
 
 
 
@@ -937,10 +928,9 @@ Remuneração do Capital
 
 ## Terrenos (avaliação)
 
-* Valor de venda:
+-   Valor de venda:
 
-. . . 
-
+. . .
 
 
 
@@ -958,7 +948,7 @@ Remuneração do Capital
 
 
 
-* Valor de Locação: $1.060.000,00*[(1+0,06)^{1/12}-1]=$ 5.159,60
+-   Valor de Locação: $1.060.000,00*[(1+0,06)^{1/12}-1]=$ 5.159,60
 
 ## Armazéns {.smaller}
 
@@ -986,7 +976,7 @@ Remuneração do Capital
 
 
 
-- Considerado: $VU = \frac{Aluguel}{AreaTerreno}$
+-   Considerado: $VU = \frac{Aluguel}{AreaTerreno}$
 
 ## Armazéns (análise exploratória)
 
@@ -1033,7 +1023,7 @@ Remuneração do Capital
 
 
 
-- Equação de Estimação: $$VU = 5,99.\left(\frac{AreaTerreno}{15000}\right)^{-1,03}.\left(\frac{AreaConstruida}{12.086,22}\right)^{0,83}.0,98^{Idade-10}$$
+-   Equação de Estimação: $$VU = 5,99.\left(\frac{AreaTerreno}{15000}\right)^{-1,03}.\left(\frac{AreaConstruida}{12.086,22}\right)^{0,83}.0,98^{Idade-10}$$
 
 ## Armazéns (modelo)
 
@@ -1083,14 +1073,11 @@ Remuneração do Capital
 
 
 
-
 ## Armazéns (Avaliação)
 
-* De posse do modelo acima, avaliar o valor do aluguel de um armazém com terreno
-de área igual a 15.000 m2, com Área Construída de 12.086,22 e Idade igual a 
-5 anos.
+-   De posse do modelo acima, avaliar o valor do aluguel de um armazém com terreno de área igual a 15.000 m2, com Área Construída de 12.086,22 e Idade igual a 5 anos.
 
-. . . 
+. . .
 
 
 
@@ -1116,31 +1103,25 @@ exp(p)
 
 
 
+-   O valor calculado foi de: 89.128,96 \[78.616,33; 101.047,34\]
 
-- O valor calculado foi de: 89.128,96 
-[78.616,33; 101.047,34]
+-   @damato [p. 254]: R\$ 90.936,00
 
-- @damato [p. 254]: R$ 90.936,00
-  - Modelo: $\frac{1}{Area} = 2,5765.10^{-5}+\frac{0,09618}{\text{Area Construida}}-3,7878.10^{-6}.\text{Conservacao}$
+    -   Modelo: $\frac{1}{Area} = 2,5765.10^{-5}+\frac{0,09618}{\text{Area Construida}}-3,7878.10^{-6}.\text{Conservacao}$
 
 # Casos Especiais
 
 ## Cinemas
 
-- Em casos especiais, como nos cinemas, pode ser utilizado o *Método da Participação*
-  - Tal método consiste em:
-    - Aferir a renda líquida do estabelecimento
-    - Aplicar a esta renda líquida um percentual médio de mercado para calcular
-    o aluguel justo ao locador
-    
-- Segundo @damato [p. 296]:
+-   Em casos especiais, como nos cinemas, pode ser utilizado o *Método da Participação*
+    -   Tal método consiste em:
+        -   Aferir a renda líquida do estabelecimento
+        -   Aplicar a esta renda líquida um percentual médio de mercado para calcular o aluguel justo ao locador
+-   Segundo @damato [p. 296]:
 
-. . . 
+. . .
 
-> Obtida a média final (das rendas líquidas), seria a mesma capitalizada em base
-às taxas de renda usuais para cinemas que são: 10% quando os equipamentos e 
-instalações são de propriedade do inquilino e 15% quando pertencem ao 
-proprietário do imóvel.
+> Obtida a média final (das rendas líquidas), seria a mesma capitalizada em base às taxas de renda usuais para cinemas que são: 10% quando os equipamentos e instalações são de propriedade do inquilino e 15% quando pertencem ao proprietário do imóvel.
 
 ## Cinemas {.smaller}
 
@@ -1171,7 +1152,7 @@ proprietário do imóvel.
 
 
 
-- @damato [p. 297]: $Al = 185.358,54\times12\% =\text{R\$ }22.240,00$
+-   @damato [p. 297]: $Al = 185.358,54\times12\% =\text{R\$ }22.240,00$
 
 ## Problema
 
@@ -1196,26 +1177,14 @@ tapply(dadosCinema$`Renda Líquida Descontada`, dadosCinema$Ano, mean)
 
 
 
-- O resultado tem aumentado anualmente em torno de 10% a.a.
-- Ao considerar a média dos rendimentos anuais, @damato obtiveram um aluguel
-condizente com o ano de 2016!
-- Isto não me parece correto!
+-   O resultado tem aumentado anualmente em torno de 10% a.a.
+-   Ao considerar a média dos rendimentos anuais, @damato obtiveram um aluguel condizente com o ano de 2016!
+-   Isto não me parece correto!
 
 ## Problemas com o Método da Participação {.smaller}
 
-> Foram apresentados métodos de participação para "postos de gasolina" e para
-"cinemas". O método para "postos de serviços" foi desenvolvido pelo engenheiro
-José Carlos Pellegrino e para os "cinemas", pelo engenheiro Nelson Roberto
-Pereira Alonso. Nesses processos de participação, o aluguel é vinculado ao 
-resultado comercial do estabelecimento empresarial do inquilino.
-Se, por um lado, possui a vantagem de permitir o estabelecimento do aluguel para
-imóveis com destinação específica, tem, na opinião do autor, as desvantagens de
-punir o bom e permiar o mau comerciante, e ainda de impedir que o proprietário
-usufrua da renda de seu patrimônio de uma forma mais lucrativa do que aquela para 
-o qual originalmente foi destinado.
+> Foram apresentados métodos de participação para "postos de gasolina" e para "cinemas". O método para "postos de serviços" foi desenvolvido pelo engenheiro José Carlos Pellegrino e para os "cinemas", pelo engenheiro Nelson Roberto Pereira Alonso. Nesses processos de participação, o aluguel é vinculado ao resultado comercial do estabelecimento empresarial do inquilino. Se, por um lado, possui a vantagem de permitir o estabelecimento do aluguel para imóveis com destinação específica, tem, na opinião do autor, as desvantagens de punir o bom e permiar o mau comerciante, e ainda de impedir que o proprietário usufrua da renda de seu patrimônio de uma forma mais lucrativa do que aquela para o qual originalmente foi destinado.
 
-> Se, por qualquer motivo, a destinação original que foi dada ao imóvel passar 
-a ser inviável, não é dado ao proprietário do prédio o direito de se afastar
-desse "prejuízo"...
+> Se, por qualquer motivo, a destinação original que foi dada ao imóvel passar a ser inviável, não é dado ao proprietário do prédio o direito de se afastar desse "prejuízo"...
 
 ## Referências

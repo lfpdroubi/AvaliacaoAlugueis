@@ -2,7 +2,7 @@
 title: "Avaliação de Aluguéis"
 subtitle: "Parte 01"
 author: "Luiz Fernando Palin Droubi"
-date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+date: last-modified
 bibliography: referencias.bib
 format: 
   metropolis-revealjs:
