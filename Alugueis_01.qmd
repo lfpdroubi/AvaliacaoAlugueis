@@ -224,6 +224,26 @@ fac |>
 -   A TMA é exclusividade do empreendedor/indivíduo!
     -   Se o cidadão tem guardado apenas R\$ 4.000,00, ele só irá comprar a geladeira à vista se ele tiver um ótimo desconto!
     -   Se o cidadão possui uma boa poupança e R\$ 4.000,00 não é para ele um montante significativo, então ele pode comprar a vista, por mínimo que seja o desconto.
+    
+## Reflexões {.smaller}
+
+- @Machline [p. 60]:
+
+. . .
+
+> Como calcular a taxa de retorno? Ela será, em geral, igual, no mínimo, à taxa
+de retorno que a empresa desfruta em suas operações habituais. Se o empresário
+achar que as oportunidades de lucro elevado se estão esgotando, ele pode
+contentar-se, em determinado investimento, com uma taxa de retorno inferior à
+que costuma obter. De qualquer maneira, ele é o único juiz da taxa de retorno
+que deseja. Se o empresário achar o negócio seguro, poderá contentar-se com uma
+taxa de retorno pequena, igual ou pouco superior à taxa de juros cobrada, na
+praça, para empréstimo de dinheiro. Se o empresário considerar o empreendimento
+arriscado, desejará uma taxa de retorno bem mais elevada. A taxa de retorno,
+em suma, depende das diretrizes financeiras da empresa; terá um valor 
+eminentemente individual, variando com a conjuntura econômica, no momento de
+tomar a decisão de investir, e refletindo a personalidade e a atitude do 
+empresário.
 
 ## Essencial de Matemática Financeira {.smaller}
 
@@ -558,18 +578,21 @@ ser feito o cálculo do valor do aluguel.
 
 ### A casa própria (2)
 
--   Suponha que:
-    -   Um terreno está anunciado por R\$ 100.000,00
-    -   Você quer construir uma casa com orçamento de R\$ 400.000,00
-    -   Você pode fazer ATC, mediante entrada de 20% (R\$ 100.000)
-    -   Você pagará ao banco inicialmente uma parcela de R\$ 5.000,00 mensais
-    -   Porém, ao longo de 30 anos esta parcela será reduzida a uma taxa de 2,5% a.a.
-    -   O aluguel de uma casa similar é R\$ 4.000,00 mensais
-    -   Porém estima-se que este aumentará a uma taxa de 2,5% a.a.
-    -   A sua TMA é de 10% a.a.
-    -   Você estima uma valor residual, ao final de 30 anos, de 20% para o imóvel.
-    -   Você compra a casa?
-    -   Despreze os custos de manutenção e outras taxas!
+- Suponha que:
+  - Um terreno está anunciado por R\$ 100.000,00
+  - Você quer construir uma casa com orçamento de R\$ 400.000,00
+  - Você pode fazer ATC, mediante entrada de 20% (R\$ 100.000)
+  - Você pagará ao banco inicialmente uma parcela de R\$ 5.000,00 mensais
+  - Porém, ao longo de 30 anos esta parcela será reduzida a uma taxa de 2,5% a.a.
+  - O aluguel de uma casa similar é R\$ 4.000,00 mensais
+  - Porém estima-se que este aumentará a uma taxa de 2,5% a.a.
+  - A sua TMA é de 10% a.a.
+  - Você estima uma valor residual, ao final de 30 anos, de 20% para o imóvel.
+    - Os terrenos não costumam ser depreciados, nem legalmente, nem do ponto de 
+    vista econômico, pois $C - L = 0$, em geral, isto é, o seu valor se mantém 
+    constante ou até aumenta [@Machline, p. 58].
+  - Você compra a casa?
+  - Despreze os custos de manutenção e outras taxas!
 
 ## O investimento em imóveis {.smaller}
 
