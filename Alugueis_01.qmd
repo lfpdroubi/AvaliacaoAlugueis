@@ -607,6 +607,24 @@ ser feito o cálculo do valor do aluguel.
     -   $$VPL = -100.000 + 566.706 - 465.838,50 + 5.730$$
     -   $$VPL \approx 6.600,00$$
 
+## O investimento em imóveis {.smaller}
+
+### Levando em conta a inflação
+
+- Segundo @Machline [p. 73]:
+  - $$i = \frac{e-d}{1+d}$$
+    - $i$ é a taxa real de juros
+    - $e$ é a taxa aparente de juros
+    - $d$ é a taxa de inflação
+    
+- Exemplo [@Machline, p. 78]:
+  - Aquisição de um terreno: R$ 5000.000,00 (1960)
+  - Venda do terreno: R$ 45.000.000,00 (1964)
+  - Dado que a taxa de inflação foi $d = 50\% \text{ a.a.}$, qual o retorno real?
+  - Solução:
+    - Taxa aparente: $e = (45.000/5.000)^{1/4}-1 = 73,2\% \text{ a.a.}$
+    - Taxa real: $$i = \frac{0,732 -0,50}{1+0,50} = \frac{0,232}{1,5} = 15,5\% \text{ a.a.}$$
+
 ## O investimento em imóveis
 
 -   Deve-se levar em conta que cada pequeno ajuste, seja na taxa, seja na renda esperada, leva a grandes diferenças no valor do imóvel!
